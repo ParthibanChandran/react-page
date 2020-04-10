@@ -9,7 +9,7 @@ export default function DropdownLinks(props) {
         <DropdownButton>{linkName}<DownArrow className="fa fa-caret-down"></DownArrow></DropdownButton>
         <DropdownContent className="dropdown-content">
             {subLinks.map((element,index)=>{
-                return <Link key={index} href="#">{element}</Link>
+                return <Link key={index} href={element.link}>{element.linkName}</Link>
             })}
         </DropdownContent>
       </DropdownWrapper>

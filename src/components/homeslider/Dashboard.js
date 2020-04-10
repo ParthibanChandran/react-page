@@ -1,21 +1,36 @@
 import React from "react";
-import { SliderWrapper,RecipeDetails } from "./style";
-import { Container } from "../../containers/style";
-// import sliderA_01 from "../../utils/images/sliderA_01.jpg";
+import {
+  SliderWrapper,
+  RecipeDetailsWrapper,
+  RecipeType,
+  RecipeTitle,
+  RecipeDetails,
+  ViewRecipe,
+} from "./style";
+import { RecipeAlignment } from "../../containers/style";
 
 export default function Dashboard(props) {
-  let { clicked_obj,obj } = props;
+  let { obj } = props;
   return (
     <SliderWrapper img={obj.img}>
-        {/* <img src={sliderA_01} alt="image not found"></img> */}
-      <Container>
-        <h1>{obj.recipe_name}</h1>
-        <RecipeDetails>
-            <div><i className="fa fa-cutlery" />{obj.servings}</div>
-            <div><i className="fa fa-clock-o" />{obj.timing}</div>
-            <div><i className="fa fa-user" />{obj.name}</div>
-        </RecipeDetails>
-      </Container>
+      <RecipeAlignment>
+        <RecipeType>{obj.type}</RecipeType>
+        <RecipeTitle>{obj.recipe_name}</RecipeTitle>
+        <RecipeDetailsWrapper>
+          <RecipeDetails>
+            <i className="fa fa-cutlery" />
+            {obj.servings}
+          </RecipeDetails>
+          <RecipeDetails>
+            <i className="fa fa-clock-o" />
+            {obj.timing}
+          </RecipeDetails>
+          <RecipeDetails>
+            <i className="fa fa-user" /> By {obj.name}
+          </RecipeDetails>
+        </RecipeDetailsWrapper>
+        <ViewRecipe>View Recipe</ViewRecipe>
+      </RecipeAlignment>
     </SliderWrapper>
   );
 }
