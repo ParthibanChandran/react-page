@@ -1,5 +1,5 @@
 import React from "react";
-import { DropdownButton,DropdownWrapper,DropdownContent,Link,DownArrow } from '../style';
+import { DropdownButton,DropdownWrapper,DropdownContent,Link,DownArrow } from './style';
 
 export default function DropdownLinks(props) {
   let { linkName, subLinks } = props.value;

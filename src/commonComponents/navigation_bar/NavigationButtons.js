@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import { Container, Header } from "./style";
-import NavigationButtons from "../components/navigation_bar/NavigationButtons.js";
-import LogoWrapper from "../components/navigation_bar/LogoWrapper.js";
-import HomeSlider from "../components/homeslider/HomeSlider.js";
-
-class App extends Component {
-  state = {
+import { NavigationWrapper } from './style';
+import DropDownLinks from "./DropdownLinks.js";
+import NormalLink from "./NormalLink.js";
+export default class NavigationButtons extends Component {
+  state ={
     nav_list: [
       {
         linkName: "Home",
@@ -49,20 +47,14 @@ class App extends Component {
         subLinks: [],
       },
     ],
-  };
-
-  render() {
+  }
+  render(){
     return (
-      <React.Fragment>
-        <Container>
-          <Header>
-            <LogoWrapper />
-            <NavigationButtons arr={this.state.nav_list}></NavigationButtons>
-          </Header>
-        </Container>
-        <HomeSlider></HomeSlider>
-      </React.Fragment>
+      <NavigationWrapper>
+        {this.state.nav_list.map((element,index) => {
+          return element.subLinks.length ? <DropDownLinks value={element} key={index}/> : <NormalLink value={element} key={index} />;
+        })}
+      </NavigationWrapper>
     );
   }
 }
-export default App;

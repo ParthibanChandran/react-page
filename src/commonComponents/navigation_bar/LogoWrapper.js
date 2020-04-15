@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo } from '../style'; 
+import { Logo } from './style'; 
 import logo from '../../assets/images/logo.jpg';
 
 export default function LogoWrapper() {

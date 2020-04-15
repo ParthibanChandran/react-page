@@ -7,12 +7,12 @@ import {
   RecipeDetails,
   ViewRecipe,
 } from "./style";
-import { RecipeAlignment } from "../../containers/style";
+import { RecipeAlignment } from "../../Pages/style";
 
 export default function Dashboard(props) {
   let { obj } = props;
   return (
-    <SliderWrapper img={obj.img}>
+    <SliderWrapper img={obj.slider_img}>
       <RecipeAlignment>
         <RecipeType>{obj.type}</RecipeType>
         <RecipeTitle>{obj.recipe_name}</RecipeTitle>

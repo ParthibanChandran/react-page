@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const Header = styled.div`
   display: flex;
-  padding: 18px 0;
+  padding: 21px 0;
 `;
 export const TabWrapper = styled(Container)`
   display: flex;
