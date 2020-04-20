@@ -1,19 +1,19 @@
-import React from "react"; 
+import React from "react";
 
-import PropTypes from 'prop-types'; 
+// import PropTypes from 'prop-types';
 
-import GridView from './GridView.js';
-import ListView from './ListView.js';
+import GridView from "./GridView.js";
+import ListView from "./ListView.js";
 import {
   RecipeCardWrapper,
   CardWrapper,
   LatestRecipeTitle,
   RecipeTitleWrapper,
-  Ruler
+  Ruler,
 } from "./style";
 
 export default function RecipeCards(props) {
-  let { recipe_list,is_grid } = props;
+  let { recipe_list, is_grid, page_two_banner } = props;
   return (
     <RecipeCardWrapper>
       <RecipeTitleWrapper>
@@ -21,13 +21,25 @@ export default function RecipeCards(props) {
         <Ruler></Ruler>
       </RecipeTitleWrapper>
       <CardWrapper grid={is_grid}>
-        {is_grid ? <GridView recipe_list={recipe_list} is_grid={is_grid}/>: <ListView recipe_list={recipe_list} is_grid={is_grid} />}
+        {is_grid ? (
+          <GridView
+            recipe_list={recipe_list}
+            is_grid={is_grid}
+            page_two_banner={page_two_banner}
+          />
+        ) : (
+          <ListView
+            recipe_list={recipe_list}
+            is_grid={is_grid}
+            page_two_banner={page_two_banner}
+          />
+        )}
       </CardWrapper>
     </RecipeCardWrapper>
   );
 }
 
-RecipeCards.propTypes = { 
-	recipe_list: PropTypes.array, 
-	is_grid: PropTypes.bool,
-} 
+// RecipeCards.propTypes = {
+// 	recipe_list: PropTypes.array,
+// 	is_grid: PropTypes.bool,
+// }

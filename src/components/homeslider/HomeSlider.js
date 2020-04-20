@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import Dashboard from "./Dashboard.js";
 import { RecipeTabs } from "./style";
-import { TabWrapper } from "../../Pages/style";
+import { TabWrapper } from "../../container/style";
 
 export default function HomeSlider(props) {
-  let { Recipe_list, activeBanner, banner_tabchanger } = props;
+  let { Recipe_list, activeBanner, banner_tabchanger, page_two_banner } = props;
   return (
-    <div>
-      <Dashboard obj={Recipe_list[activeBanner]} />
+    <React.Fragment>
+      <Dashboard
+        obj={Recipe_list[activeBanner]}
+        page_two_banner={page_two_banner}
+      />
       <TabWrapper>
         {Recipe_list.slice(0, 4).map((element, index) => {
           return (
@@ -21,6 +24,6 @@ export default function HomeSlider(props) {
           );
         })}
       </TabWrapper>
-    </div>
+    </React.Fragment>
   );
 }

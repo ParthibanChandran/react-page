@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
+import "./style.css";
 import {
   RecipeCard,
   RecipeCardContents,
@@ -7,17 +8,15 @@ import {
   RecipeTitle,
   HorizondalRuler,
   RatingWrapper,
-  Rating,
   RecipeDetails,
   ViewButton,
   DetailsWrapper,
   RecipeDescription,
-  Stars
 } from "./style";
+import RatingStar from "../../commonComponents/Rating/RatingStar";
 
 export default function ListView(props) {
-  let { recipe_list, is_grid } = props;
-  console.log(is_grid);
+  let { recipe_list, is_grid, page_two_banner } = props;
   return (
     <React.Fragment>
       {recipe_list.map((element, index) => {
@@ -30,26 +29,36 @@ export default function ListView(props) {
               <HorizondalRuler />
               <DetailsWrapper>
                 <RatingWrapper>
-                  <Rating>
-                    {[...new Array(5)].map((value,index)=>{
-                      return <Stars star_checked={index+1 <= element.rating} className="fa fa-star"></Stars>
-                    })}
-                  </Rating>
                   <div>
-                  <RecipeDetails>
-                    <i className="fa fa-clock-o" /> {element.timing}
-                  </RecipeDetails>
-                  <RecipeDetails>
-                    <i className="fa fa-user" /> By {element.name}
-                  </RecipeDetails>
-                  <RecipeDetails>
-                    <i className="fa fa-cutlery" />
-                    {element.servings}
-                  </RecipeDetails>
+                    <RatingStar element={element} />
                   </div>
-                  
+                  <div>
+                    <RecipeDetails>
+                      <i className="fa fa-clock-o" /> {element.timing}
+                    </RecipeDetails>
+                    <RecipeDetails>
+                      <i className="fa fa-user" /> By {element.name}
+                    </RecipeDetails>
+                    <RecipeDetails>
+                      <i className="fa fa-cutlery" />
+                      {element.servings}
+                    </RecipeDetails>
+                  </div>
                 </RatingWrapper>
-                <ViewButton>View</ViewButton>
+                <ViewButton>
+                  <Link
+                    className="link-tag"
+                    to={{
+                      pathname: "/recipe-page",
+                      state: {
+                        obj: element,
+                        page_two_banner: page_two_banner,
+                      },
+                    }}
+                  >
+                    View
+                  </Link>
+                </ViewButton>
               </DetailsWrapper>
             </RecipeCardContents>
           </RecipeCard>

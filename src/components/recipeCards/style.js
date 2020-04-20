@@ -31,6 +31,7 @@ export const RecipeCard = styled.div`
 export const RecipeCardContents = styled.div`
   background-color: #f8f8f8;
   padding: 20px 25px;
+  height: 150px;
 `;
 
 export const CardImg = styled.img.attrs((props) => ({
@@ -61,11 +62,6 @@ export const DetailsWrapper = styled.div`
 `;
 export const RatingWrapper = styled.div`
   flex-basis: 70%;
-`;
-export const Rating = styled.div``;
-
-export const Stars = styled.i`
-color: ${props => props.star_checked ?"rgb(255, 199, 65);":"rgb(224, 224, 224)"};
 `;
 
 export const RecipeDetails = styled.div`

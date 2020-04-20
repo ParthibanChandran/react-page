@@ -1,14 +1,4 @@
 import styled from "styled-components";
-import { ViewButton } from "./recipeCards/style";
-
-export const RecipeContents = styled.div`
-  display: flex;
-  margin-top: 30px;
-`;
-
-export const SearchWrapper = styled.div`
-  flex-basis: 25%;
-`;
 
 export const SearchBar = styled.input.attrs(() => ({
   placeholder: "Search for recipes",
@@ -40,7 +30,3 @@ export const SearchButton = styled.button`
     background-color: gray;
   }
 `;
-export const View = styled(ViewButton)`
-  margin: 25px 0 25px 20px;
-`;
-export const ntents = styled.div``;

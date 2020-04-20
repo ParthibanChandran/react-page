@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const AuthorWrapper = styled.div`
   padding: 28px 25px;
   border: 1px solid #e8e8e8;
+  margin-top: 25px;
 `;
 export const AuthorBox = styled.div`
   display: flex;
@@ -34,7 +35,7 @@ export const AuthorRightAlignment = styled.div`
 `;
 export const AuthorImg = styled.img.attrs((props) => ({
   src: props.img,
-  alt: "file not found"
+  alt: "file not found",
 }))`
   height: inherit;
   width: inherit;
