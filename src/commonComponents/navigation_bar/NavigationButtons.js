@@ -7,11 +7,12 @@ export default class NavigationButtons extends Component {
     nav_list: [
       {
         linkName: "Home",
-        link: "#",
+        link: "/home-page/recipe-page-1",
         subLinks: [],
       },
       {
         linkName: "Demos",
+        linkTo:"/demos",
         subLinks: [
           { linkName: "Grid Homepage", link: "#" },
           { linkName: "List Homepage", link: "#" },
@@ -20,6 +21,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Recipes",
+        linkTo : "/home-page/recipe-page-1",
         subLinks: [
           { linkName: "Browse Recipes", link: "#" },
           { linkName: "Recipe page #1", link: "#" },
@@ -28,6 +30,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Pages",
+        linkTo:"/pages",
         subLinks: [
           { linkName: "Shortcodes", link: "#" },
           { linkName: "Typography", link: "#" },
@@ -36,6 +39,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Shop",
+        linkTo : "/shop",
         subLinks: [
           { linkName: "Shop", link: "#" },
           { linkName: "Product Page", link: "#" },

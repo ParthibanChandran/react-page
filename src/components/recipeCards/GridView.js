@@ -39,7 +39,7 @@ export default function GridView(props) {
                   <Link
                     className="link-tag"
                     to={{
-                      pathname: "/recipe-page",
+                      pathname: "/home-page/recipe-page-2",
                       state: {
                         obj: element,
                         page_two_banner: page_two_banner,

@@ -36,7 +36,7 @@ export default function Dashboard(props) {
           <Link
             className="banner-link-tag"
             to={{
-              pathname: "/recipe-page",
+              pathname: "/home-page/recipe-page-2",
               state: {
                 obj: obj,
                 page_two_banner: page_two_banner,

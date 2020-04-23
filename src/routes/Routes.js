@@ -1,18 +1,19 @@
 import React, { Component } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
-import HomeComponent from "../Pages/Home/HomeComponent.js";
-import IndividualRecipes from "../Pages/RecipePage/IndividualRecipes.js";
+import { Route, Switch, Redirect, BrowserRouter } from "react-router-dom";
+
+import Welcome from "../Pages/forms/Welcome.js";
+import App from "../container/App.js";
 
 export default class Routes extends Component {
   render() {
     return (
-      <React.Fragment>
+      <BrowserRouter>
         <Switch>
-          <Route path="/home-page" exact component={HomeComponent} />
-          <Route path="/recipe-page" component={IndividualRecipes} />
-          <Redirect from="/" to="/home-page" />
+          <Route path="/welcome" exact component={Welcome} />
+          <Route path="/home-page" exact component={App} />
+          <Redirect from="/" to="/welcome"/>
         </Switch>
-      </React.Fragment>
+      </BrowserRouter>
     );
   }
 }

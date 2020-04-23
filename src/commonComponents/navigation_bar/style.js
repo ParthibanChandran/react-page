@@ -11,6 +11,7 @@ export const NavigationWrapper = styled.div`
   align-items: center;
 `;
 export const DropdownButton = styled.a`
+  text-decoration: none;
   cursor: pointer;
   color: #707070;
   font-family: "Open Sans", sans-serif;
@@ -41,7 +42,7 @@ export const DropdownWrapper = styled.div`
   }
 `;
 
-export const Link = styled.a`
+export const Links = styled.a`
   color: black;
   font-family: "Open Sans", sans-serif;
   padding: 12px 16px;

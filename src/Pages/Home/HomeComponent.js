@@ -137,7 +137,7 @@ export default class HomeComponent extends Component {
         type: "Beef",
         recipe_content:
           "Maecenas in massa eget urna ullamcorper pharetra. Curabitur laoreet scelerisque bibendum. Aenean ullamcorper neque ac tristique semper. Phasellus enim mauris, mollis vulputate blandit in, ornare sed leo.",
-        card_img: require("../../assets/images/recipeThumb-04.jpg"),
+        card_img: require("../../assets/images/recipeThumb-09.jpg"),
         rating: 4,
         calories: "112 kcal",
         author_list: [

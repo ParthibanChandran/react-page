@@ -1,11 +1,17 @@
-import React from 'react'
-import { DropdownButton } from './style';
+import React from "react";
+import { DropdownButton } from "./style";
+import { Link } from "react-router-dom";
 
 export default function NormalLink(props) {
-    let { linkName} = props.value;
-    return (
-        <div>
-            <DropdownButton>{linkName}</DropdownButton>
-        </div>
-    )
+  let { linkName, link } = props.value;
+  return (
+    <div>
+      <Link
+        className="nav-tag"
+        to={{ pathname: link }}
+      >
+        {linkName}
+      </Link>
+    </div>
+  );
 }
