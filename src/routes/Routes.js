@@ -16,7 +16,7 @@ export default class Routes extends Component {
           <Switch>
             <Route path="/login" exact component={Login} />
             <Route path="/signup" exact component={SignUp} />
-            <Route path="/welcome" exact component={RecipeHomePage}/>
+            {/* <Route path="/welcome" exact component={RecipeHomePage}/> */}
             <Route
               render={() => 
                 temp != null && temp.loginStatus ? (

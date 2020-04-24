@@ -20,7 +20,7 @@ export default class RecipeHomePage extends Component {
         <Switch>
           <Route path="/recipe-page-1" exact component={HomeComponent} />
           <Route path="/recipe-page-2" exact component={IndividualRecipes} />
-          <Redirect from="/welcome" to="/recipe-page-1" />
+          <Redirect to="/recipe-page-1" />
         </Switch>
       </React.Fragment>
     );
