@@ -24,7 +24,7 @@ import {
   DirectionsValues,
   DirectionsIndexNo,
   DirectionsContents,
-  SideBar
+  SideBar,
 } from "./style";
 
 import SearchBarComponent from "../../commonComponents/SearchBar/SearchBarComponent";
@@ -36,7 +36,8 @@ export default class IndividualRecipes extends Component {
     page_two_banner: null,
     author_list: {},
     ingredients: [],
-    directions: []
+    directions: [],
+    search_value: "",
   };
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -48,11 +49,29 @@ export default class IndividualRecipes extends Component {
       page_two_banner: page_two_banner,
       author_list: obj.author_list[0],
       ingredients: obj.ingredients,
-      directions: obj.directions
+      directions: obj.directions,
     });
     // }
   }
-
+  inputChangeHandler = (event) => {
+    this.setState({ search_value: event.target.value });
+  };
+  wordSearch = (e) => {
+    let searchText = this.state.search_value.trim();
+    if (e.which === 13 && searchText !== "") {
+      this.searchResult();
+    }
+  };
+  searchResult = () => {
+    if (this.props.history.location.pathname === "/recipe-page-2") {
+      this.props.history.push({
+        pathname: "/recipe-page-1",
+        state: {
+          searchText: this.state.search_value,
+        },
+      });
+    }
+  };
   render() {
     const ingredients = this.state.ingredients.map((data, index) => {
       return (
@@ -128,7 +147,12 @@ export default class IndividualRecipes extends Component {
             </RecipeDescriptionWrapper>
           </RecipeWrapper>
           <SideBar>
-            <SearchBarComponent />
+            <SearchBarComponent
+              value={this.state.search_value}
+              clicked={this.searchResult}
+              pressed={this.wordSearch}
+              changed={this.inputChangeHandler}
+            />
             <AuthorCard author_list={this.state.author_list} />
             {/* <AuthorCard author_list={this.state.recipe_obj.author_list[0]}/> */}
           </SideBar>

@@ -8,7 +8,6 @@ import IndividualRecipes from "../Pages/RecipePage/IndividualRecipes";
 
 export default class RecipeHomePage extends Component {
   render() {
-      console.log(this.props);
     return (
       <React.Fragment>
         <Container>

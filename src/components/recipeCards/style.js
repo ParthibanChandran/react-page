@@ -31,7 +31,7 @@ export const RecipeCard = styled.div`
 export const RecipeCardContents = styled.div`
   background-color: #f8f8f8;
   padding: 20px 25px;
-  height: 150px;
+  height: ${(props) => (props.grid ? "130px" : "245px")};
 `;
 
 export const CardImg = styled.img.attrs((props) => ({

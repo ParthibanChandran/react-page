@@ -23,7 +23,7 @@ export default function GridView(props) {
         return (
           <RecipeCard key={index} grid={is_grid}>
             <CardImg img={element.card_img} grid={is_grid} />
-            <RecipeCardContents>
+            <RecipeCardContents grid={is_grid}>
               <RecipeTitle>{element.recipe_name}</RecipeTitle>
               <HorizondalRuler />
               <DetailsWrapper>

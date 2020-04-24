@@ -23,7 +23,7 @@ export default function ListView(props) {
         return (
           <RecipeCard key={index}>
             <CardImg img={element.card_img} grid={is_grid} />
-            <RecipeCardContents>
+            <RecipeCardContents grid={is_grid}>
               <RecipeTitle>{element.recipe_name}</RecipeTitle>
               <RecipeDescription>{element.recipe_content}</RecipeDescription>
               <HorizondalRuler />

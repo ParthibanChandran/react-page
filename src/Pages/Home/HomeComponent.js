@@ -281,10 +281,17 @@ export default class HomeComponent extends Component {
     ],
     activeBanner: 0,
     is_grid: true,
-    search_value: "",
+    search_value: "" ,
+    searchRecipeList: null,
     page_two_banner: require("../../assets/images/recipeBackground-02.webp"),
   };
-
+  componentDidMount(){
+    if (this.props.location.state != null) {
+      this.setState({ search_value: this.props.location.state.searchText },()=>{
+        this.searchResult();
+      });
+    }
+  }
   banner_tabchanger = (id) => {
     this.setState({ activeBanner: id });
   };
@@ -306,20 +313,14 @@ export default class HomeComponent extends Component {
     }
   };
   searchResult = () => {
-    var source_arr = [...this.state.Recipe_list];
-    var destination_arr = [];
+    let arr = [];
     let searchText = this.state.search_value.trim();
-    const regex = new RegExp(searchText, "gi");
-    source_arr.forEach((element) => {
-      let val = element.recipe_name.split(" ");
-      let words = val.map((v) => v.toLowerCase());
-      words.forEach((value) => {
-        if (value.match(regex)) {
-          destination_arr.push(element);
-        }
-      });
+    this.state.Recipe_list.filter((data) => {
+      if (data.recipe_name.toLowerCase().includes(searchText)) {
+        return arr.push(data);
+      }
     });
-    this.setState({ Recipe_list: destination_arr });
+    this.setState({ searchRecipeList: arr });
   };
 
   render() {
@@ -335,7 +336,7 @@ export default class HomeComponent extends Component {
           <RecipeContents>
             <RecipeCards
               is_grid={this.state.is_grid}
-              recipe_list={this.state.Recipe_list}
+              recipe_list={ this.state.searchRecipeList === null ? this.state.Recipe_list: this.state.searchRecipeList}
               page_two_banner={this.state.page_two_banner}
             />
             <SearchWrapper>
@@ -343,6 +344,7 @@ export default class HomeComponent extends Component {
                 clicked={this.searchResult}
                 changed={this.Inputhandler}
                 pressed={this.wordSearch}
+                value={this.state.search_value}
               />
               <View onClick={this.listView}>
                 <i className="fa fa-bars"></i> List

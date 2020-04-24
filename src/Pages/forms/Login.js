@@ -117,9 +117,9 @@ export default class Login extends Component {
     console.log(formData, temp, user);
     this.setState({ formIsValid: temp, loginResult: true, existStatus: temp },()=>{
       console.log(this.state.formIsValid,temp,this.state.loginResult);
-      if (this.state.existStatus && this.state.formIsValid) {
-        this.props.history.push("/recipe-page-1");
-      }
+      // if (this.state.existStatus && this.state.formIsValid) {
+      //   this.props.history.push("/recipe-page-1");
+      // }
     });
   };
   render() {
@@ -170,9 +170,9 @@ export default class Login extends Component {
         </ButtonWrapper>
       </form>
     );
-    // if (this.state.existStatus && this.state.formIsValid) {
-    //   return <Redirect to="/recipe"/>;
-    // }
+    if (this.state.existStatus && this.state.formIsValid) {
+      return <Redirect to="/recipe-page-1"/>;
+    }
     return (
       <WelcomeWrapper>
       <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
