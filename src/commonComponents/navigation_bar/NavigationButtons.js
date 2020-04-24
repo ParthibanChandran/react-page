@@ -7,7 +7,7 @@ export default class NavigationButtons extends Component {
     nav_list: [
       {
         linkName: "Home",
-        link: "/home-page/recipe-page-1",
+        link: "/recipe-page-1",
         subLinks: [],
       },
       {
@@ -21,7 +21,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Recipes",
-        linkTo : "/home-page/recipe-page-1",
+        linkTo : "/recipe-page-1",
         subLinks: [
           { linkName: "Browse Recipes", link: "#" },
           { linkName: "Recipe page #1", link: "#" },

@@ -10,7 +10,7 @@ import {
   RecipeDetails,
   ViewRecipe,
 } from "./style";
-import { RecipeAlignment } from "../../container/style";
+import { RecipeAlignment } from "../../Pages/style";
 
 export default function Dashboard(props) {
   let { obj, page_two_banner } = props;
@@ -36,7 +36,7 @@ export default function Dashboard(props) {
           <Link
             className="banner-link-tag"
             to={{
-              pathname: "/home-page/recipe-page-2",
+              pathname: "/recipe-page-2",
               state: {
                 obj: obj,
                 page_two_banner: page_two_banner,

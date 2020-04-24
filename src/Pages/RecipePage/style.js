@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container } from "../../container/style";
+import { Container } from "../style";
 
 export const RecipeBackgroundWrapper = styled.div`
   width: 100%;

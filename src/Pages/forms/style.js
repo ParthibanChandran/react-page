@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const WelcomeWrapper = styled.div`
-  display: flex;
+display: flex;
 `;
 export const WelcomeImage = styled.div`
-  background-image: url('${(props) => props.img}');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  width: calc(100% - 520px);
-  height: 850px;
+background-image: url('${(props) => props.img}');
+background-repeat: no-repeat;
+background-position: center;
+background-size: cover;
+width: calc(100% - 520px);
+height: 850px;
 `;
 export const FormWrapper = styled.div`
-  width: 520px;
+width: 520px;
 `;
 export const LoginWrapper = styled.div`
   padding: 75px 50px 50px;

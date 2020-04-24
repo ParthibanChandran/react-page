@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-
 import {
   LoginWrapper,
   TitleText,
   InputTitle,
   ButtonWrapper,
-  InputBox,
+  InputBox,WelcomeWrapper, WelcomeImage, FormWrapper
 } from "./style";
 import FormSubmit from "./input/FormSubmit";
 import { Link, Redirect } from "react-router-dom";
-import App from "../../container/App";
+import RecipeHomePage from "../RecipeHomePage";
 
 export default class Login extends Component {
   state = {
@@ -35,6 +34,8 @@ export default class Login extends Component {
         value: "",
         validation: {
           required: true,
+          minLength: 8,
+          maxLength: 15,
         },
         valid: false,
         touched: false,
@@ -43,6 +44,7 @@ export default class Login extends Component {
     formIsValid: false,
     loginResult: false,
     existStatus: false,
+    BannerImage: require("../../assets/images/receipe.jpeg"),
   };
   checkValidity(value, rules) {
     let isValid = true;
@@ -99,17 +101,25 @@ export default class Login extends Component {
         formElementIdentifier
       ].value;
     }
-    var user=sessionStorage.getItem("user");
-    if(user){
-      user = JSON.parse(user);
-      var temp=false;
-      if(user.password === formData.password && user.email === formData.email){
-        temp=true;
+    var user = sessionStorage.getItem("user");
+    var temp = false;
+    if (user) {
+      user = JSON.parse(user); 
+      if (
+        user.password === formData.password &&
+        user.email === formData.email
+      ) {
+        user.loginStatus = true;
+        sessionStorage.setItem("user",JSON.stringify(user));
+        temp = true;
       }
     }
-    console.log(formData,temp,user);
-    this.setState({ loginResult: true,existStatus: temp },()=>{
-       
+    console.log(formData, temp, user);
+    this.setState({ formIsValid: temp, loginResult: true, existStatus: temp },()=>{
+      console.log(this.state.formIsValid,temp,this.state.loginResult);
+      // if (this.state.existStatus && this.state.formIsValid) {
+      //   this.props.history.push("/recipe-page-1");
+      // }
     });
   };
   render() {
@@ -150,32 +160,40 @@ export default class Login extends Component {
             Login
           </FormSubmit>
           <FormSubmit clicked={this.signupHandler}>
-            <Link className="banner-link-tag" to={{ pathname: "/welcome/signup" }}>
+            <Link
+              className="banner-link-tag"
+              to={{ pathname: "/signup" }}
+            >
               SignUp
             </Link>
           </FormSubmit>
         </ButtonWrapper>
       </form>
     );
-    if(this.state.loginResult && this.state.existStatus && this.state.formIsValid){
-      return <Redirect to="/home-page"/>;
+    if (this.state.existStatus && this.state.formIsValid) {
+      return <Redirect to="/welcome"/>;
     }
     return (
+      <WelcomeWrapper>
+      <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
+      <FormWrapper>
       <LoginWrapper>
-        <TitleText>Login</TitleText> 
-        {this.state.formIsValid ? null:(
-           <h3
-           style={{
-             marginBottom: "20px",
-             color: "red",
-             fontFamily: "'Open Sans', sans-serif",
-           }}
-         >
-           Invalid User...Please SignUp...
-         </h3>
-        )}    
+        <TitleText>Login</TitleText>
+        {this.state.formIsValid === false && this.state.loginResult ? (
+          <h3
+            style={{
+              marginBottom: "20px",
+              color: "red",
+              fontFamily: "'Open Sans', sans-serif",
+            }}
+          >
+            Invalid Details...
+          </h3>
+        ) : null}
         {form}
       </LoginWrapper>
+      </FormWrapper>
+      </WelcomeWrapper>
     );
   }
 }

@@ -49,7 +49,7 @@ export default function ListView(props) {
                   <Link
                     className="link-tag"
                     to={{
-                      pathname: "/home-page/recipe-page-2",
+                      pathname: "/recipe-page-2",
                       state: {
                         obj: element,
                         page_two_banner: page_two_banner,

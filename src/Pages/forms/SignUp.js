@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 
 import FormSubmit from "./input/FormSubmit";
 import Input from "./input/Input";
-import { SignupWrapper, TitleText } from "./style";
+import { SignupWrapper, TitleText,WelcomeWrapper, WelcomeImage, FormWrapper } from "./style";
 
 export default class SignUp extends Component {
   state = {
@@ -80,8 +80,9 @@ export default class SignUp extends Component {
       },
     },
     formIsValid: false,
-    loading: false,
+    passwordCheck: false,
     signupResult: false,
+    BannerImage: require("../../assets/images/receipe.jpeg"),
   };
 
   signupHandler = (event) => {
@@ -92,16 +93,18 @@ export default class SignUp extends Component {
         formElementIdentifier
       ].value;
     }
+    formData.loginStatus = false;
     console.log(formData);
-    var temp = this.state.formIsValid;
+    var temp = true;
     if (formData.password === formData.re_password) {
       sessionStorage.setItem("user", JSON.stringify(formData));
-      var result = true;
     } else {
       temp = false;
     }
-    this.setState({ formIsValid: temp, signupResult: result }, () => {
-      
+    this.setState({
+      formIsValid: temp,
+      passwordCheck: temp,
+      signupResult: true,
     });
   };
   checkValidity(value, rules) {
@@ -171,13 +174,16 @@ export default class SignUp extends Component {
         <FormSubmit disabled={!this.state.formIsValid}>Sign in</FormSubmit>
       </form>
     );
-    if (this.state.formIsValid && this.state.signupResult) {
-      return <Redirect to="/welcome/login"/>;
+    if (this.state.formIsValid && this.state.passwordCheck) {
+      return <Redirect to="/login" />;
     }
     return (
+      <WelcomeWrapper>
+      <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
+      <FormWrapper>
       <SignupWrapper>
         <TitleText>Sign Up</TitleText>
-        {this.state.formIsValid ? (
+        {this.state.formIsValid === false && this.state.signupResult ? (
           <h3
             style={{
               marginBottom: "20px",
@@ -190,6 +196,8 @@ export default class SignUp extends Component {
         ) : null}
         {form}
       </SignupWrapper>
+      </FormWrapper>
+      </WelcomeWrapper>
     );
   }
 }

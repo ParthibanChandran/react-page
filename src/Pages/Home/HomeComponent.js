@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { SearchWrapper, RecipeContents, View } from "./style";
-import { Container } from "../../container/style";
+import { Container } from "../style";
 
 import HomeSlider from "../../components/homeslider/HomeSlider.js";
 import RecipeCards from "../../components/recipeCards/RecipeCards.js";
