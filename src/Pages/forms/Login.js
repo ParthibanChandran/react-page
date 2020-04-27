@@ -46,6 +46,9 @@ export default class Login extends Component {
     existStatus: false,
     BannerImage: require("../../assets/images/receipe.jpeg"),
   };
+  componentDidMount(){
+    window.scrollTo(0, 0);
+  }
   checkValidity(value, rules) {
     let isValid = true;
 
