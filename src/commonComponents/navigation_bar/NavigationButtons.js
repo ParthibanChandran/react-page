@@ -1,9 +1,12 @@
 import React, { Component } from "react";
-import { NavigationWrapper } from './style';
+import { connect } from 'react-redux';
+import { NavigationWrapper, DropdownButton } from "./style";
 import DropDownLinks from "./DropdownLinks.js";
 import NormalLink from "./NormalLink.js";
-export default class NavigationButtons extends Component {
-  state ={
+import { logoutHandler } from "../../Pages/actions";
+
+class NavigationButtons extends Component {
+  state = {
     nav_list: [
       {
         linkName: "Home",
@@ -12,7 +15,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Demos",
-        linkTo:"/demos",
+        linkTo: "/empty-page",
         subLinks: [
           { linkName: "Grid Homepage", link: "#" },
           { linkName: "List Homepage", link: "#" },
@@ -21,7 +24,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Recipes",
-        linkTo : "/recipe-page-1",
+        linkTo: "/empty-page",
         subLinks: [
           { linkName: "Browse Recipes", link: "#" },
           { linkName: "Recipe page #1", link: "#" },
@@ -30,7 +33,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Pages",
-        linkTo:"/pages",
+        linkTo: "/empty-page",
         subLinks: [
           { linkName: "Shortcodes", link: "#" },
           { linkName: "Typography", link: "#" },
@@ -39,7 +42,7 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Shop",
-        linkTo : "/shop",
+        linkTo: "/shop",
         subLinks: [
           { linkName: "Shop", link: "#" },
           { linkName: "Product Page", link: "#" },
@@ -47,18 +50,36 @@ export default class NavigationButtons extends Component {
       },
       {
         linkName: "Submit Recipe",
-        link: "#",
+        link: "/empty-page",
         subLinks: [],
       },
     ],
-  }
-  render(){
+  };
+  UserlogoutHandler = () => {
+    sessionStorage.setItem("authenticated",false);
+    this.props.logoutHandler();
+  };
+  render() {
     return (
       <NavigationWrapper>
-        {this.state.nav_list.map((element,index) => {
-          return element.subLinks.length ? <DropDownLinks value={element} key={index}/> : <NormalLink value={element} key={index} />;
+        {this.state.nav_list.map((element, index) => {
+          return element.subLinks.length ? (
+            <DropDownLinks value={element} key={index} />
+          ) : (
+            <NormalLink value={element} key={index} />
+          );
         })}
+        <div>
+          <DropdownButton onClick={this.UserlogoutHandler}>Logout</DropdownButton>
+        </div>
       </NavigationWrapper>
     );
   }
 }
+const mapDispatchToProps = dispatch => ({
+  logoutHandler: () => dispatch(logoutHandler()),
+});
+
+export default connect(null,
+  mapDispatchToProps
+)(NavigationButtons);

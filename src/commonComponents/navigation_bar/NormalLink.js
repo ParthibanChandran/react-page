@@ -1,5 +1,5 @@
 import React from "react";
-import { DropdownButton } from "./style";
+import { Links } from "./style";
 import { Link } from "react-router-dom";
 
 export default function NormalLink(props) {

@@ -1,16 +1,20 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { logoutHandler } from "../actions";
 import {
   LoginWrapper,
   TitleText,
   InputTitle,
   ButtonWrapper,
-  InputBox,WelcomeWrapper, WelcomeImage, FormWrapper
+  InputBox,
+  WelcomeWrapper,
+  WelcomeImage,
+  FormWrapper,
 } from "./style";
 import FormSubmit from "./input/FormSubmit";
-import { Link, Redirect } from "react-router-dom";
-import RecipeHomePage from "../RecipeHomePage";
+import { Link } from "react-router-dom";
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     loginForm: {
       email: {
@@ -46,7 +50,7 @@ export default class Login extends Component {
     existStatus: false,
     BannerImage: require("../../assets/images/receipe.jpeg"),
   };
-  componentDidMount(){
+  componentDidMount() {
     window.scrollTo(0, 0);
   }
   checkValidity(value, rules) {
@@ -104,26 +108,23 @@ export default class Login extends Component {
         formElementIdentifier
       ].value;
     }
-    var user = sessionStorage.getItem("user");
+    var user = localStorage.getItem(formData.email);
     var temp = false;
     if (user) {
-      user = JSON.parse(user); 
+      user = JSON.parse(user);
       if (
         user.password === formData.password &&
         user.email === formData.email
       ) {
         user.loginStatus = true;
-        sessionStorage.setItem("user",JSON.stringify(user));
+        localStorage.setItem(formData.email, JSON.stringify(user));
+        sessionStorage.setItem("authenticated", true);
+        this.props.logoutHandler();
         temp = true;
+        this.props.history.push("/recipe-page-1");
       }
     }
-    console.log(formData, temp, user);
-    this.setState({ formIsValid: temp, loginResult: true, existStatus: temp },()=>{
-      console.log(this.state.formIsValid,temp,this.state.loginResult);
-      // if (this.state.existStatus && this.state.formIsValid) {
-      //   this.props.history.push("/recipe-page-1");
-      // }
-    });
+    this.setState({ formIsValid: temp, loginResult: true, existStatus: temp });
   };
   render() {
     const formElementsArray = [];
@@ -163,40 +164,39 @@ export default class Login extends Component {
             Login
           </FormSubmit>
           <FormSubmit clicked={this.signupHandler}>
-            <Link
-              className="banner-link-tag"
-              to={{ pathname: "/signup" }}
-            >
+            <Link className="banner-link-tag" to={{ pathname: "/signup" }}>
               SignUp
             </Link>
           </FormSubmit>
         </ButtonWrapper>
       </form>
     );
-    if (this.state.existStatus && this.state.formIsValid) {
-      return <Redirect to="/recipe-page-1"/>;
-    }
     return (
       <WelcomeWrapper>
-      <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
-      <FormWrapper>
-      <LoginWrapper>
-        <TitleText>Login</TitleText>
-        {this.state.formIsValid === false && this.state.loginResult ? (
-          <h3
-            style={{
-              marginBottom: "20px",
-              color: "red",
-              fontFamily: "'Open Sans', sans-serif",
-            }}
-          >
-            Invalid Details...
-          </h3>
-        ) : null}
-        {form}
-      </LoginWrapper>
-      </FormWrapper>
+        <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
+        <FormWrapper>
+          <LoginWrapper>
+            <TitleText>Login</TitleText>
+            {this.state.formIsValid === false && this.state.loginResult ? (
+              <h3
+                style={{
+                  marginBottom: "20px",
+                  color: "red",
+                  fontFamily: "'Open Sans', sans-serif",
+                }}
+              >
+                Invalid Details...
+              </h3>
+            ) : null}
+            {form}
+          </LoginWrapper>
+        </FormWrapper>
       </WelcomeWrapper>
     );
   }
 }
+const mapDispatchToProps = (dispatch) => ({
+  logoutHandler: (data) => dispatch(logoutHandler()),
+});
+
+export default connect(null, mapDispatchToProps)(Login);

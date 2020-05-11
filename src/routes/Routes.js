@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import Login from "../Pages/forms/Login";
 import SignUp from "../Pages/forms/SignUp";
 import RecipeHomePage from "../Pages/RecipeHomePage.js";
 
-export default class Routes extends Component {
+class Routes extends Component {
   render() {
-    const temp = JSON.parse(sessionStorage.getItem("user"));
+    // const temp = JSON.parse(localStorage.getItem("user"));
     // if(temp!=null && temp.loginStatus){
+      // console.log("enter");
     //   return <RecipeHomePage/>;
     // }
     return (
@@ -18,7 +20,7 @@ export default class Routes extends Component {
             <Route path="/signup" exact component={SignUp} />
             <Route
               render={() => 
-                temp != null && temp.loginStatus ? (
+                this.props.isLogged === "true" ? (
                   <RecipeHomePage />
                 ) : (
                   <Redirect from="/" to="/login" />
@@ -30,3 +32,11 @@ export default class Routes extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  isLogged: state.getIn(["isLogged"])
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(Routes);

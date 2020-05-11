@@ -96,8 +96,10 @@ export default class SignUp extends Component {
     formData.loginStatus = false;
     console.log(formData);
     var temp = true;
-    if (formData.password === formData.re_password) {
-      sessionStorage.setItem("user", JSON.stringify(formData));
+    console.log();
+    if (formData.password === formData.re_password && localStorage.getItem(formData.email) === null) {
+      localStorage.setItem(formData.email, JSON.stringify(formData));
+      this.props.history.push("/login");
     } else {
       temp = false;
     }
@@ -174,9 +176,6 @@ export default class SignUp extends Component {
         <FormSubmit disabled={!this.state.formIsValid}>Sign in</FormSubmit>
       </form>
     );
-    if (this.state.formIsValid && this.state.passwordCheck) {
-      return <Redirect to="/login" />;
-    }
     return (
       <WelcomeWrapper>
       <WelcomeImage img={this.state.BannerImage}></WelcomeImage>

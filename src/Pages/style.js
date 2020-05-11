@@ -20,3 +20,14 @@ export const TabWrapper = styled(Container)`
 export const RecipeAlignment = styled(Container)`
   width: 960px;
 `;
+export const NotFoundWrapper = styled.div`
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Arvo";
+`;
+export const HomePageWrapper = styled.a`
+text-decoration: none;
+color: #8dc63f;
+`;
