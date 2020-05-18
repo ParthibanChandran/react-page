@@ -201,17 +201,17 @@ class Login extends Component {
           <FormWrapper>
             <LoginWrapper>
               <TitleText>Login</TitleText>
-              {/* {this.state.formIsValid === false && this.state.loginResult ? ( */}
               <h3
                 style={{
-                  marginBottom: "20px",
                   color: "red",
+                  fontSize: "18px",
+                  paddingBottom: "10px",
+                  height: "45px",
                   fontFamily: "'Open Sans', sans-serif",
                 }}
               >
                 {this.state.errorMsg}
               </h3>
-              {/* ) : null} */}
               {form}
             </LoginWrapper>
           </FormWrapper>

@@ -220,17 +220,17 @@ export default class SignUp extends Component {
           <FormWrapper>
             <SignupWrapper>
               <TitleText>Sign Up</TitleText>
-              {/* {this.state.formIsValid === false && this.state.signupResult ? ( */}
               <h3
                 style={{
-                  marginBottom: "20px",
-                  color: "red",
-                  fontFamily: "'Open Sans', sans-serif",
+                    color: "red",
+                    fontSize: "18px",
+                    paddingBottom: "10px",
+                    height: "45px",
+                    fontFamily: "'Open Sans', sans-serif",
                 }}
               >
                 {this.state.errorMsg}
               </h3>
-              {/* ) : null} */}
               {form}
             </SignupWrapper>
           </FormWrapper>
