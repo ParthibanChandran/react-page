@@ -9,6 +9,8 @@ import {
   ProductContainer,
   CartWrapper,
   ProductWrapper,
+  SpinnerWrapper,
+  Spinner,
 } from "./style";
 import { ThemeProvider } from "styled-components";
 import ProductCards from "../../components/ProductCards/ProductCards";
@@ -45,6 +47,7 @@ export default class Shop extends Component {
     ],
     addToCartProduct: [],
     subtotal: 0,
+    loading: true,
   };
   componentDidMount() {
     axios
@@ -57,7 +60,7 @@ export default class Shop extends Component {
             ...this.state.productImgs[index],
           };
         });
-        this.setState({ products: updatedProducts });
+        this.setState({ products: updatedProducts, loading: false });
       })
       .catch((error) => {
         // console.log(error);
@@ -101,12 +104,18 @@ export default class Shop extends Component {
                 subtotal={this.state.subtotal}
               />
             </CartWrapper>
-            <ProductWrapper>
-              <ProductCards
-                products={this.state.products}
-                addToCartHandler={this.addToCartHandler}
-              />
-            </ProductWrapper>
+            {this.state.loading ? (
+              <SpinnerWrapper>
+                <Spinner></Spinner>
+              </SpinnerWrapper>
+            ) : (
+              <ProductWrapper>
+                <ProductCards
+                  products={this.state.products}
+                  addToCartHandler={this.addToCartHandler}
+                />
+              </ProductWrapper>
+            )}
           </ProductContainer>
         </ThemeProvider>
       </React.Fragment>

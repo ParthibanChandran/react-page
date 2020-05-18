@@ -8,7 +8,7 @@ import { createStore } from "redux";
 import { Provider } from "react-redux";
 import Func from "./Pages/reducer";
 
-axios.defaults.baseURL = "http://demo1916410.mockable.io";
+axios.defaults.baseURL = "https://demo1916410.mockable.io";
 axios.defaults.headers.common["Authorization"] = "AUTH TOKEN";
 axios.defaults.headers.post["Content-Type"] = "application/json";
 

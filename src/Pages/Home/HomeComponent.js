@@ -286,6 +286,7 @@ export default class HomeComponent extends Component {
     page_two_banner: require("../../assets/images/recipeBackground-02.webp"),
   };
   componentDidMount(){
+    window.scrollTo(0, 0);
     if (this.props.location.state != null) {
       this.setState({ search_value: this.props.location.state.searchText },()=>{
         this.searchResult();

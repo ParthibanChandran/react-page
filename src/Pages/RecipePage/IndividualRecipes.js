@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import { theme } from "../../styles/theme";
 import {
   RecipeBackgroundWrapper,
   RecipeBackground,
@@ -30,6 +30,7 @@ import {
 import SearchBarComponent from "../../commonComponents/SearchBar/SearchBarComponent";
 import AuthorCard from "../../commonComponents/AuthorCard/AuthorCard.js";
 import RatingStar from "../../commonComponents/Rating/RatingStar";
+import { ThemeProvider } from "styled-components";
 export default class IndividualRecipes extends Component {
   state = {
     recipe_obj: {},
@@ -97,7 +98,7 @@ export default class IndividualRecipes extends Component {
     });
 
     return (
-      <div>
+      <ThemeProvider theme={theme}>
         <RecipeBackgroundWrapper>
           <RecipeBackground src={this.state.page_two_banner}></RecipeBackground>
         </RecipeBackgroundWrapper>
@@ -157,7 +158,7 @@ export default class IndividualRecipes extends Component {
             {/* <AuthorCard author_list={this.state.recipe_obj.author_list[0]}/> */}
           </SideBar>
         </RecipeWrapperAlignment>
-      </div>
+      </ThemeProvider>
     );
   }
 }

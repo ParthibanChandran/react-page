@@ -13,7 +13,8 @@ import {
 } from "./style";
 import FormSubmit from "./input/FormSubmit";
 import { Link } from "react-router-dom";
-
+import { ThemeProvider } from "styled-components";
+import { theme } from "../../styles/theme";
 class Login extends Component {
   state = {
     loginForm: {
@@ -49,31 +50,44 @@ class Login extends Component {
     loginResult: false,
     existStatus: false,
     BannerImage: require("../../assets/images/receipe.jpeg"),
+    errorMsg: "",
   };
   componentDidMount() {
     window.scrollTo(0, 0);
   }
   checkValidity(value, rules) {
     let isValid = true;
-
+    let error = "";
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
+      if (isValid === false) {
+        error = "fields are empty";
+      }
     }
 
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
+      if (isValid === false) {
+        error = "password should be min 8 and max 15 characters";
+      }
     }
 
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
+      if (isValid === false) {
+        error = "password should be min 8 and max 15 characters";
+      }
     }
 
     if (rules.isEmail) {
       const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
       isValid = pattern.test(value) && isValid;
+      if (isValid === false) {
+        error = "email is incorrect";
+      }
     }
 
-    return isValid;
+    return error;
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -84,10 +98,15 @@ class Login extends Component {
       ...updatedLoginForm[inputIdentifier],
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(
+    let error = this.checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
+    if (error === "") {
+      updatedFormElement.valid = true;
+    } else {
+      updatedFormElement.valid = false;
+    }
     updatedFormElement.touched = true;
     updatedLoginForm[inputIdentifier] = updatedFormElement;
 
@@ -95,7 +114,11 @@ class Login extends Component {
     for (let inputIdentifier in updatedLoginForm) {
       formIsValid = updatedLoginForm[inputIdentifier].valid && formIsValid;
     }
-    this.setState({ loginForm: updatedLoginForm, formIsValid: formIsValid });
+    this.setState({
+      loginForm: updatedLoginForm,
+      formIsValid: formIsValid,
+      errorMsg: error,
+    });
   };
   signupHandler = (event) => {
     event.preventDefault();
@@ -173,11 +196,12 @@ class Login extends Component {
     );
     return (
       <WelcomeWrapper>
-        <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
-        <FormWrapper>
-          <LoginWrapper>
-            <TitleText>Login</TitleText>
-            {this.state.formIsValid === false && this.state.loginResult ? (
+        <ThemeProvider theme={theme}>
+          <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
+          <FormWrapper>
+            <LoginWrapper>
+              <TitleText>Login</TitleText>
+              {/* {this.state.formIsValid === false && this.state.loginResult ? ( */}
               <h3
                 style={{
                   marginBottom: "20px",
@@ -185,12 +209,13 @@ class Login extends Component {
                   fontFamily: "'Open Sans', sans-serif",
                 }}
               >
-                Invalid Details...
+                {this.state.errorMsg}
               </h3>
-            ) : null}
-            {form}
-          </LoginWrapper>
-        </FormWrapper>
+              {/* ) : null} */}
+              {form}
+            </LoginWrapper>
+          </FormWrapper>
+        </ThemeProvider>
       </WelcomeWrapper>
     );
   }

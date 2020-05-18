@@ -20,7 +20,7 @@ export const TabWrapper = styled(Container)`
 export const RecipeAlignment = styled(Container)`
   width: 960px;
 `;
-export const NotFoundWrapper = styled.div`
+export const CenterWrapper = styled.div`
   height: 100vh;
   display: flex;
   align-items: center;

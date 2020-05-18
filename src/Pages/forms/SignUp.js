@@ -1,9 +1,16 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
 
 import FormSubmit from "./input/FormSubmit";
 import Input from "./input/Input";
-import { SignupWrapper, TitleText,WelcomeWrapper, WelcomeImage, FormWrapper } from "./style";
+import {
+  SignupWrapper,
+  TitleText,
+  WelcomeWrapper,
+  WelcomeImage,
+  FormWrapper,
+} from "./style";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../../styles/theme";
 
 export default class SignUp extends Component {
   state = {
@@ -17,6 +24,7 @@ export default class SignUp extends Component {
         value: "",
         validation: {
           required: true,
+          minLength: 4,
         },
         valid: false,
         touched: false,
@@ -44,6 +52,7 @@ export default class SignUp extends Component {
         value: "",
         validation: {
           required: true,
+          minLength: 4,
         },
         valid: false,
         touched: false,
@@ -83,6 +92,7 @@ export default class SignUp extends Component {
     passwordCheck: false,
     signupResult: false,
     BannerImage: require("../../assets/images/receipe.jpeg"),
+    errorMsg: "",
   };
 
   signupHandler = (event) => {
@@ -94,41 +104,58 @@ export default class SignUp extends Component {
       ].value;
     }
     formData.loginStatus = false;
-    console.log(formData);
     var temp = true;
-    console.log();
-    if (formData.password === formData.re_password && localStorage.getItem(formData.email) === null) {
-      localStorage.setItem(formData.email, JSON.stringify(formData));
-      this.props.history.push("/login");
+    let error = "";
+    if (localStorage.getItem(formData.email) === null) {
+      if (formData.password === formData.re_password) {
+        localStorage.setItem(formData.email, JSON.stringify(formData));
+        this.props.history.push("/login");
+      } else {
+        temp = false;
+      }
     } else {
-      temp = false;
+      error = "Email is already exists...";
     }
+
     this.setState({
       formIsValid: temp,
       passwordCheck: temp,
       signupResult: true,
+      errorMsg: error,
     });
   };
   checkValidity(value, rules) {
     let isValid = true;
-
+    let error = "";
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
+      if (isValid === false) {
+        error = "fields are empty";
+      }
     }
 
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
+      if (isValid === false) {
+        error = "Name should be minimum of 4 characters";
+      }
     }
 
     if (rules.maxLength) {
       isValid = value.length <= rules.maxLength && isValid;
+      if (isValid === false) {
+        error = "password should be min 8 and max 15 characters";
+      }
     }
 
     if (rules.isEmail) {
       const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
       isValid = pattern.test(value) && isValid;
+      if (isValid === false) {
+        error = "email is incorrect";
+      }
     }
-    return isValid;
+    return error;
   }
 
   inputChangedHandler = (event, inputIdentifier) => {
@@ -139,10 +166,16 @@ export default class SignUp extends Component {
       ...updatedSignupForm[inputIdentifier],
     };
     updatedFormElement.value = event.target.value;
-    updatedFormElement.valid = this.checkValidity(
+
+    let error = this.checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
+    if (error === "") {
+      updatedFormElement.valid = true;
+    } else {
+      updatedFormElement.valid = false;
+    }
     updatedFormElement.touched = true;
     updatedSignupForm[inputIdentifier] = updatedFormElement;
 
@@ -150,7 +183,11 @@ export default class SignUp extends Component {
     for (let inputIdentifier in updatedSignupForm) {
       formIsValid = updatedSignupForm[inputIdentifier].valid && formIsValid;
     }
-    this.setState({ signupForm: updatedSignupForm, formIsValid: formIsValid });
+    this.setState({
+      signupForm: updatedSignupForm,
+      formIsValid: formIsValid,
+      errorMsg: error,
+    });
   };
   render() {
     const formElementsArray = [];
@@ -178,24 +215,26 @@ export default class SignUp extends Component {
     );
     return (
       <WelcomeWrapper>
-      <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
-      <FormWrapper>
-      <SignupWrapper>
-        <TitleText>Sign Up</TitleText>
-        {this.state.formIsValid === false && this.state.signupResult ? (
-          <h3
-            style={{
-              marginBottom: "20px",
-              color: "red",
-              fontFamily: "'Open Sans', sans-serif",
-            }}
-          >
-            Invalid Details...
-          </h3>
-        ) : null}
-        {form}
-      </SignupWrapper>
-      </FormWrapper>
+        <ThemeProvider theme={theme}>
+          <WelcomeImage img={this.state.BannerImage}></WelcomeImage>
+          <FormWrapper>
+            <SignupWrapper>
+              <TitleText>Sign Up</TitleText>
+              {/* {this.state.formIsValid === false && this.state.signupResult ? ( */}
+              <h3
+                style={{
+                  marginBottom: "20px",
+                  color: "red",
+                  fontFamily: "'Open Sans', sans-serif",
+                }}
+              >
+                {this.state.errorMsg}
+              </h3>
+              {/* ) : null} */}
+              {form}
+            </SignupWrapper>
+          </FormWrapper>
+        </ThemeProvider>
       </WelcomeWrapper>
     );
   }

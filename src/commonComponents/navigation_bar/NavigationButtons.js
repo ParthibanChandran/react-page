@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { NavigationWrapper, DropdownButton } from "./style";
 import DropDownLinks from "./DropdownLinks.js";
 import NormalLink from "./NormalLink.js";
@@ -13,50 +13,50 @@ class NavigationButtons extends Component {
         link: "/recipe-page-1",
         subLinks: [],
       },
-      {
-        linkName: "Demos",
-        linkTo: "/empty-page",
-        subLinks: [
-          { linkName: "Grid Homepage", link: "#" },
-          { linkName: "List Homepage", link: "#" },
-          { linkName: "Boxed Version", link: "#" },
-        ],
-      },
+      // {
+      //   linkName: "Demos",
+      //   linkTo: "/demos",
+      //   subLinks: [
+      //     { linkName: "Grid Homepage", link: "#" },
+      //     { linkName: "List Homepage", link: "#" },
+      //     { linkName: "Boxed Version", link: "#" },
+      //   ],
+      // },
       {
         linkName: "Recipes",
-        linkTo: "/empty-page",
+        linkTo: "/recipes",
         subLinks: [
-          { linkName: "Browse Recipes", link: "#" },
-          { linkName: "Recipe page #1", link: "#" },
-          { linkName: "Recipe page #2", link: "#" },
+          { linkName: "Browse Recipes", link: "/recipes" },
+          { linkName: "Recipe page #1", link: "/recipes" },
+          { linkName: "Recipe page #2", link: "/recipes" },
         ],
       },
-      {
-        linkName: "Pages",
-        linkTo: "/empty-page",
-        subLinks: [
-          { linkName: "Shortcodes", link: "#" },
-          { linkName: "Typography", link: "#" },
-          { linkName: "Contact", link: "#" },
-        ],
-      },
+      // {
+      //   linkName: "Pages",
+      //   linkTo: "/pages",
+      //   subLinks: [
+      //     { linkName: "Shortcodes", link: "#" },
+      //     { linkName: "Typography", link: "#" },
+      //     { linkName: "Contact", link: "#" },
+      //   ],
+      // },
       {
         linkName: "Shop",
         linkTo: "/shop",
         subLinks: [
-          { linkName: "Shop", link: "#" },
-          { linkName: "Product Page", link: "#" },
+          { linkName: "Shop", link: "/shop" },
+          { linkName: "Product Page", link: "/shop" },
         ],
       },
       {
         linkName: "Submit Recipe",
-        link: "/empty-page",
+        link: "/submit-recipe",
         subLinks: [],
       },
     ],
   };
   UserlogoutHandler = () => {
-    sessionStorage.setItem("authenticated",false);
+    sessionStorage.setItem("authenticated", false);
     this.props.logoutHandler();
   };
   render() {
@@ -70,16 +70,16 @@ class NavigationButtons extends Component {
           );
         })}
         <div>
-          <DropdownButton onClick={this.UserlogoutHandler}>Logout</DropdownButton>
+          <DropdownButton onClick={this.UserlogoutHandler}>
+            Logout
+          </DropdownButton>
         </div>
       </NavigationWrapper>
     );
   }
 }
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   logoutHandler: () => dispatch(logoutHandler()),
 });
 
-export default connect(null,
-  mapDispatchToProps
-)(NavigationButtons);
+export default connect(null, mapDispatchToProps)(NavigationButtons);

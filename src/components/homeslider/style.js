@@ -8,7 +8,6 @@ export const SliderWrapper = styled.div`
     height: 415px;
     transition: 1s ease-in;
     display: flex;
-    /* opacity: 0.8;*/
     filter: brightness(98%);
     flex-direction: column ;
     justify-content: center;

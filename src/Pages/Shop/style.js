@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled,{keyframes} from "styled-components";
 import { Container } from "../style";
 
 export const ShopWrapper = styled.div`
@@ -33,8 +33,31 @@ export const ProductContainer = styled(Container)`
 export const CartWrapper = styled.div`
   flex-basis: 22%;
 `;
+export const SpinnerWrapper = styled.div`
+  display: flex;
+  flex-basis: 75%;
+  justify-content: center;
+  align-items: center;
+  height: 500px;
+`;
 export const ProductWrapper = styled.div`
   display: flex;
   flex-basis: 75%;
   flex-flow: row wrap;
+`;
+const rotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+`;
+export const Spinner = styled.div`
+   border: 14px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  animation: ${rotate} 2s linear infinite;
 `;

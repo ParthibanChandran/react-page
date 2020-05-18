@@ -49,6 +49,7 @@ export const AuthorMail = styled.a`
 `;
 export const AuthorDescription = styled.p`
   line-height: 24px;
+  color: #a0a0a0;
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
   text-align: left;

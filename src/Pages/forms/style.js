@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const WelcomeWrapper = styled.div`
-display: flex;
+  display: flex;
 `;
 export const WelcomeImage = styled.div`
 background-image: url('${(props) => props.img}');
@@ -12,7 +12,7 @@ width: calc(100% - 520px);
 height: 850px;
 `;
 export const FormWrapper = styled.div`
-width: 520px;
+  width: 520px;
 `;
 export const LoginWrapper = styled.div`
   padding: 75px 50px 50px;
@@ -24,7 +24,7 @@ export const TitleText = styled.label`
   display: block;
   width: 100%;
   /* font-family: "Poppins-Bold"; */
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
   font-size: 39px;
   color: #333;
   line-height: 1.2;
@@ -34,7 +34,7 @@ export const TitleText = styled.label`
 export const InputTitle = styled.div`
   /* font-family: "Poppins-SemiBold"; */
   font-weight: bold;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
   font-size: 22px;
   color: #999;
   line-height: 1.2;
@@ -50,8 +50,7 @@ export const InputBox = styled.input`
   width: 100%;
   height: 50px;
   background: 0 0;
-  /* font-family: Poppins-Regular; */
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
   color: #555;
   line-height: 1.2;
   padding: 0 2px;
@@ -59,7 +58,7 @@ export const InputBox = styled.input`
   outline: none;
   border: none;
   font-size: 20px;
-  /* border: ${(props) => (props.loginResult ? "none":"1px solid red")}; */
+  /* border: ${(props) => (props.loginResult ? "none" : "1px solid red")}; */
   &::placeholder {
     font-size: 16px;
     font-weight: 300;
@@ -68,8 +67,8 @@ export const InputBox = styled.input`
   }
   &:focus {
       border-bottom: 1px solid #8dc63f;
-    /* border-bottom: ${(props) => (props.loginResult ? "1px solid #8dc63f": "1px solid red")}; */
+    /* border-bottom: ${(props) =>
+      props.loginResult ? "1px solid #8dc63f" : "1px solid red"}; */
   }
 `;
 // export const Wrapper = styled.div``;
-

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   CartTitle,
   CheckoutWrapper,
@@ -12,8 +12,17 @@ import {
   AddToCartWrapper,
   EmptyCart,
 } from "./style";
-export default function Cart(props) {
+import { withRouter } from "react-router";
+function Cart(props) {
   let { addToCartProduct, subtotal } = props;
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const orderHandler = () => {
+    props.history.push("/order");
+  };
+  
   return (
     <React.Fragment>
       <CartTitle>Cart</CartTitle>
@@ -38,8 +47,9 @@ export default function Cart(props) {
         <SubtotalValue>
           <SubtotalTitle>subtotal : ${subtotal}</SubtotalTitle>
         </SubtotalValue>
-        <CheckoutButton>Checkout</CheckoutButton>
+        <CheckoutButton onClick={orderHandler}>Checkout</CheckoutButton>
       </CheckoutWrapper>
     </React.Fragment>
   );
 }
+export default withRouter(Cart);

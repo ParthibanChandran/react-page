@@ -23,21 +23,21 @@ export const RecipeWrapper = styled.div`
   width: 71%;
 `;
 export const RecipeBanner = styled.div`
-  background-color: #f8f8f8;
+  background-color: ${(props) => props.theme.colors.lightGrey};
   transform: translateY(-65px);
 `;
 export const RecipeHeadingWrapper = styled.div`
   padding: 35px 20px;
 `;
 export const RecipeHeading = styled.h2`
-  color: #606060;
+  color: ${(props) => props.theme.colors.darkGrey};
   font-size: 30px;
   font-family: "Arvo";
   margin-bottom: 10px;
 `;
 export const Rating = styled.div`
   color: #909090;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
 `;
 export const RecipeImgWrapper = styled.div`
   width: 680px;
@@ -49,9 +49,9 @@ export const RecipeImg = styled.img`
 `;
 export const Contents = styled.div`
   border-right: 1px solid #d8d8d8;
-  color: #606060;
+  color: ${(props) => props.theme.colors.darkGrey};
   padding: 5px 10px;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
 `;
 export const ContentDesc = styled.div`
   font-weight: bold;
@@ -59,7 +59,7 @@ export const ContentDesc = styled.div`
   margin-top: 5px;
 `;
 export const RecipeContentsWrapper = styled.div`
-  background-color: #f8f8f8;
+  background-color: ${(props) => props.theme.colors.lightGrey};
   padding: 20px 23px 20px 35px;
   display: flex;
   & ${Contents}:last-child {
@@ -72,15 +72,15 @@ export const PrintButton = styled.button`
   margin-right: 20px;
   border: none;
   color: white;
-  background-color: #8dc63f;
+  background-color: ${(props) => props.theme.colors.yellowGreen};
   padding: 10px;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
 `;
 export const RecipeDesc = styled.div`
   margin-top: -35px;
   color: #808080;
   line-height: 24px;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
 `;
 export const RecipeDescriptionWrapper = styled.div`
   display: flex;
@@ -88,13 +88,13 @@ export const RecipeDescriptionWrapper = styled.div`
 `;
 export const IngredientWrapper = styled.div`
   flex-basis: 40%;
-  background-color: #f8f8f8;
+  background-color: ${(props) => props.theme.colors.lightGrey};
   padding: 30px 35px 0;
 `;
 export const IngredientTitle = styled.h3`
   font-size: 22px;
-  font-family: "Open Sans", sans-serif;
-  color: #606060;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  color: ${(props) => props.theme.colors.darkGrey};
   margin-bottom: 20px;
 }
 `;
@@ -115,8 +115,8 @@ export const InputCheckedWrapper = styled.div`
     text-decoration: line-through;
   }
   > label {
-    font-family: "Open Sans", sans-serif;
-    color: #606060;
+    font-family: ${(props) => props.theme.fontFamily.primaryFont};
+    color: ${(props) => props.theme.colors.darkGrey};
     font-size: 14px;
     margin-left: 10px;
     line-height: 18px;
@@ -132,12 +132,12 @@ export const DirectionsIndexNo = styled.span`
   color: #999;
   padding: 8px 10px;
   display: inline-table;
-  font-family: "Open Sans", sans-serif;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
   font-weight: 700;
 `;
 export const DirectionsValues = styled.div`
-  font-family: "Open Sans", sans-serif;
-  color: #606060;
+  font-family: ${(props) => props.theme.fontFamily.primaryFont};
+  color: ${(props) => props.theme.colors.darkGrey};
   font-size: 14px;
   margin-left: 10px;
   line-height: 24px;
