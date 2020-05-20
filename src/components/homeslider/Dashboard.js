@@ -13,7 +13,7 @@ import {
 import { RecipeAlignment } from "../../Pages/style";
 
 export default function Dashboard(props) {
-  let { obj, page_two_banner } = props;
+  let { obj, page_two_banner,author_obj } = props;
   return (
     <SliderWrapper img={obj.slider_img}>
       <RecipeAlignment>
@@ -29,7 +29,7 @@ export default function Dashboard(props) {
             {obj.timing}
           </RecipeDetails>
           <RecipeDetails>
-            <i className="fa fa-user" /> By {obj.author_list[0].name}
+            <i className="fa fa-user" /> By {author_obj.name}
           </RecipeDetails>
         </RecipeDetailsWrapper>
         <ViewRecipe>
@@ -40,6 +40,7 @@ export default function Dashboard(props) {
               state: {
                 obj: obj,
                 page_two_banner: page_two_banner,
+                author_obj: author_obj
               },
             }}
           >

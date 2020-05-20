@@ -76,9 +76,11 @@ export const RecipeDetails = styled.div`
 export const ViewButton = styled.button`
   font-family: "Open Sans", sans-serif;
   background-color: none;
-  border: 1px solid gray;
+  border: none;
   border-radius: 3px;
-  color: gray;
+  background-color : ${(props) => props.theme.colors.yellowGreen};
+  color: white;
+  font-weight: bold;
   /* outline: none; */
   cursor: pointer;
 `;

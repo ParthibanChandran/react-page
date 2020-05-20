@@ -1,11 +1,6 @@
 import React, { Component } from "react";
-import axios from "axios";
 import { theme } from "../../styles/theme";
 import {
-  ShopWrapper,
-  ShopAlignment,
-  ShopTitle,
-  PageInfo,
   ProductContainer,
   CartWrapper,
   ProductWrapper,
@@ -15,6 +10,8 @@ import {
 import { ThemeProvider } from "styled-components";
 import ProductCards from "../../components/ProductCards/ProductCards";
 import Cart from "../../components/Cart/Cart";
+import PageTitle from "../../components/PageTitle/PageTitle";
+import axios from "./axios-products";
 
 export default class Shop extends Component {
   state = {
@@ -88,15 +85,7 @@ export default class Shop extends Component {
     return (
       <React.Fragment>
         <ThemeProvider theme={theme}>
-          <ShopWrapper>
-            <ShopAlignment>
-              <ShopTitle>Shop</ShopTitle>
-              <PageInfo>
-                You are here: <span style={{ fontWeight: "bold" }}>Home</span> >
-                Shop
-              </PageInfo>
-            </ShopAlignment>
-          </ShopWrapper>
+          <PageTitle title={"shop"} />
           <ProductContainer>
             <CartWrapper>
               <Cart

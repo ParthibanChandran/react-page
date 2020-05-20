@@ -10,16 +10,16 @@ class Routes extends Component {
   render() {
     return (
       <Switch>
-        <Route path="/login" exact component={Login} />
+        <Route path="/" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
         <Route
-          path={["/recipe-page-1", "/recipe-page-2", "/shop", "/order"]}
+          path={["/recipe-page-1", "/recipe-page-2", "/shop", "/order","/submit-recipe"]}
           exact
           render={() =>
             this.props.isLogged === "true" ? (
               <RecipeHomePage />
             ) : (
-              <Redirect from="/" to="/login" />
+              <Redirect from="/" to="/" />
             )
           }
         />

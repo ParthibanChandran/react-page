@@ -12,13 +12,14 @@ import {
 
 export default function ProductCards(props) {
   let { products, addToCartHandler } = props;
+  console.log(products)
   return (
     <React.Fragment>
       {products.map((data, index) => {
         return (
           <ProductCard key={index}>
             <ProductImgWrapper>
-              <ProductCardImg img={data.productImg} />
+              <ProductCardImg img={data.productImg}/>
               <AddCart
                 onClick={() => {
                   addToCartHandler(data, index);

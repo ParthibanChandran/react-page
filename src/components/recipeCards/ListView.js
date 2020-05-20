@@ -16,7 +16,7 @@ import {
 import RatingStar from "../../commonComponents/Rating/RatingStar";
 
 export default function ListView(props) {
-  let { recipe_list, is_grid, page_two_banner } = props;
+  let { recipe_list, is_grid, page_two_banner,author_obj } = props;
   return (
     <React.Fragment>
       {recipe_list.map((element, index) => {
@@ -53,6 +53,7 @@ export default function ListView(props) {
                       state: {
                         obj: element,
                         page_two_banner: page_two_banner,
+                        author_obj: author_obj
                       },
                     }}
                   >

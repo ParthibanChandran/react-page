@@ -7,6 +7,8 @@ import HomeComponent from "../Pages/Home/HomeComponent";
 import IndividualRecipes from "../Pages/RecipePage/IndividualRecipes";
 import Shop from "../Pages/Shop/Shop";
 import Order from "./Order";
+import SubmitRecipe from "./SubmitRecipe/SubmitRecipe";
+
 export default function RecipeHomePage() {
   return (
     <React.Fragment>
@@ -21,6 +23,7 @@ export default function RecipeHomePage() {
         <Route path="/recipe-page-2" exact component={IndividualRecipes} />
         <Route path="/shop" exact component={Shop} />
         <Route path="/order" exact component={Order} />
+        <Route path="/submit-recipe" exact component={SubmitRecipe}/>
       </Switch>
     </React.Fragment>
   );

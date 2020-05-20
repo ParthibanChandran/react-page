@@ -13,20 +13,20 @@ import {
 } from "./style";
 
 export default function AuthorCard(props) {
-  let { author_list } = props;
+  let { author_obj } = props;
   return (
     <AuthorWrapper>
       <AuthorBox>
         <AuthorLeftAlignment>
           <AuthorTitle>AUTHOR</AuthorTitle>
-          <AuthorName>{author_list.name}</AuthorName>
+          <AuthorName>{author_obj.name}</AuthorName>
         </AuthorLeftAlignment>
         <AuthorRightAlignment>
-          <AuthorImg img={author_list.author_img} />
+          <AuthorImg img={author_obj.author_img} />
         </AuthorRightAlignment>
       </AuthorBox>
-      <AuthorMail>{author_list.mail_id}</AuthorMail>
-      <AuthorDescription>{author_list.description}</AuthorDescription>
+      <AuthorMail>{author_obj.mail_id}</AuthorMail>
+      <AuthorDescription>{author_obj.description}</AuthorDescription>
     </AuthorWrapper>
   );
 }

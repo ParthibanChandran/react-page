@@ -35,20 +35,19 @@ export default class IndividualRecipes extends Component {
   state = {
     recipe_obj: {},
     page_two_banner: null,
-    author_list: {},
+    author_obj: {},
     ingredients: [],
     directions: [],
     search_value: "",
   };
   componentDidMount() {
     window.scrollTo(0, 0);
-    // console.log(this.props);
-    let { obj, page_two_banner } = this.props.location.state;
+    let { obj, page_two_banner,author_obj } = this.props.location.state;
     // if(Object.keys(this.state.recipe_obj).length === 0 && !this.state.page_two_banner){
     this.setState({
       recipe_obj: obj,
       page_two_banner: page_two_banner,
-      author_list: obj.author_list[0],
+      author_obj: author_obj,
       ingredients: obj.ingredients,
       directions: obj.directions,
     });
@@ -100,7 +99,7 @@ export default class IndividualRecipes extends Component {
     return (
       <ThemeProvider theme={theme}>
         <RecipeBackgroundWrapper>
-          <RecipeBackground src={this.state.page_two_banner}></RecipeBackground>
+          <RecipeBackground alt="file not found" src={this.state.page_two_banner}></RecipeBackground>
         </RecipeBackgroundWrapper>
         <RecipeWrapperAlignment>
           <RecipeWrapper>
@@ -115,7 +114,7 @@ export default class IndividualRecipes extends Component {
                 </Rating>
               </RecipeHeadingWrapper>
               <RecipeImgWrapper>
-                <RecipeImg src={this.state.recipe_obj.card_img}></RecipeImg>
+                <RecipeImg alt="file not found" src={this.state.recipe_obj.card_img}></RecipeImg>
               </RecipeImgWrapper>
               <RecipeContentsWrapper>
                 <Contents>
@@ -154,7 +153,7 @@ export default class IndividualRecipes extends Component {
               pressed={this.wordSearch}
               changed={this.inputChangeHandler}
             />
-            <AuthorCard author_list={this.state.author_list} />
+            <AuthorCard author_obj={this.state.author_obj} />
             {/* <AuthorCard author_list={this.state.recipe_obj.author_list[0]}/> */}
           </SideBar>
         </RecipeWrapperAlignment>
