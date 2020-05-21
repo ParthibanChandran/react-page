@@ -1,6 +1,7 @@
 .link-tag {
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 .banner-link-tag {
   text-decoration: none;

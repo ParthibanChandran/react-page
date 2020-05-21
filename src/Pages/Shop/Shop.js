@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles/theme";
 import {
   ProductContainer,
@@ -7,11 +8,10 @@ import {
   SpinnerWrapper,
   Spinner,
 } from "./style";
-import { ThemeProvider } from "styled-components";
 import ProductCards from "../../components/ProductCards/ProductCards";
 import Cart from "../../components/Cart/Cart";
 import PageTitle from "../../components/PageTitle/PageTitle";
-import axios from "./axios-products";
+import axios from "../Store/axios-products";
 
 export default class Shop extends Component {
   state = {
@@ -60,8 +60,7 @@ export default class Shop extends Component {
         this.setState({ products: updatedProducts, loading: false });
       })
       .catch((error) => {
-        // console.log(error);
-        this.setState({ error: true });
+        alert(error);
       });
   }
   addToCartHandler = (data, index) => {

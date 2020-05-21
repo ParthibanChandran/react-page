@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-
-import FormSubmit from "./input/FormSubmit";
-import Input from "./input/Input";
 import {
   SignupWrapper,
   TitleText,
   WelcomeWrapper,
   WelcomeImage,
   FormWrapper,
+  ErrorMsg,
 } from "./style";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles/theme";
+import { checkValidity } from "../../utils/utility";
+
+import FormSubmit from "./input/FormSubmit";
+import Input from "./input/Input";
 
 export default class SignUp extends Component {
   state = {
@@ -109,8 +111,9 @@ export default class SignUp extends Component {
     if (localStorage.getItem(formData.email) === null) {
       if (formData.password === formData.re_password) {
         localStorage.setItem(formData.email, JSON.stringify(formData));
-        this.props.history.push("/login");
+        this.props.history.push("/");
       } else {
+        error = "Password didn't match...";
         temp = false;
       }
     } else {
@@ -124,39 +127,6 @@ export default class SignUp extends Component {
       errorMsg: error,
     });
   };
-  checkValidity(value, rules) {
-    let isValid = true;
-    let error = "";
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-      if (isValid === false) {
-        error = "fields are empty";
-      }
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-      if (isValid === false) {
-        error = "Name should be minimum of 4 characters";
-      }
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-      if (isValid === false) {
-        error = "password should be min 8 and max 15 characters";
-      }
-    }
-
-    if (rules.isEmail) {
-      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = pattern.test(value) && isValid;
-      if (isValid === false) {
-        error = "email is incorrect";
-      }
-    }
-    return error;
-  }
 
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedSignupForm = {
@@ -167,7 +137,7 @@ export default class SignUp extends Component {
     };
     updatedFormElement.value = event.target.value;
 
-    let error = this.checkValidity(
+    let error = checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
@@ -220,17 +190,7 @@ export default class SignUp extends Component {
           <FormWrapper>
             <SignupWrapper>
               <TitleText>Sign Up</TitleText>
-              <h3
-                style={{
-                    color: "red",
-                    fontSize: "18px",
-                    paddingBottom: "10px",
-                    height: "45px",
-                    fontFamily: "'Open Sans', sans-serif",
-                }}
-              >
-                {this.state.errorMsg}
-              </h3>
+              <ErrorMsg>{this.state.errorMsg}</ErrorMsg>
               {form}
             </SignupWrapper>
           </FormWrapper>

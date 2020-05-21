@@ -13,7 +13,7 @@ class Routes extends Component {
         <Route path="/" exact component={Login} />
         <Route path="/signup" exact component={SignUp} />
         <Route
-          path={["/recipe-page-1", "/recipe-page-2", "/shop", "/order","/submit-recipe"]}
+          path={["/home-page", "/recipe-page", "/shop", "/order","/submit-recipe"]}
           exact
           render={() =>
             this.props.isLogged === "true" ? (

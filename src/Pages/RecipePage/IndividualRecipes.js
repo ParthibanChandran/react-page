@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { theme } from "../../styles/theme";
+import { ThemeProvider } from "styled-components";
 import {
   RecipeBackgroundWrapper,
   RecipeBackground,
@@ -30,7 +31,7 @@ import {
 import SearchBarComponent from "../../commonComponents/SearchBar/SearchBarComponent";
 import AuthorCard from "../../commonComponents/AuthorCard/AuthorCard.js";
 import RatingStar from "../../commonComponents/Rating/RatingStar";
-import { ThemeProvider } from "styled-components";
+
 export default class IndividualRecipes extends Component {
   state = {
     recipe_obj: {},
@@ -42,8 +43,8 @@ export default class IndividualRecipes extends Component {
   };
   componentDidMount() {
     window.scrollTo(0, 0);
-    let { obj, page_two_banner,author_obj } = this.props.location.state;
-    // if(Object.keys(this.state.recipe_obj).length === 0 && !this.state.page_two_banner){
+
+    let { obj, page_two_banner, author_obj } = this.props.location.state;
     this.setState({
       recipe_obj: obj,
       page_two_banner: page_two_banner,
@@ -51,7 +52,6 @@ export default class IndividualRecipes extends Component {
       ingredients: obj.ingredients,
       directions: obj.directions,
     });
-    // }
   }
   inputChangeHandler = (event) => {
     this.setState({ search_value: event.target.value });
@@ -63,9 +63,9 @@ export default class IndividualRecipes extends Component {
     }
   };
   searchResult = () => {
-    if (this.props.history.location.pathname === "/recipe-page-2") {
+    if (this.props.history.location.pathname === "/recipe-page") {
       this.props.history.push({
-        pathname: "/recipe-page-1",
+        pathname: "/home-page",
         state: {
           searchText: this.state.search_value,
         },
@@ -76,13 +76,8 @@ export default class IndividualRecipes extends Component {
     const ingredients = this.state.ingredients.map((data, index) => {
       return (
         <InputCheckedWrapper key={index}>
-          <input
-            type="checkbox"
-            id="ingredient"
-            name="ingredients"
-            value=""
-          ></input>
-          <label htmlFor="ingredient">{data}</label>
+          <input type="checkbox" id={index} name="ingredients" value=""></input>
+          <label htmlFor={index}>{data}</label>
         </InputCheckedWrapper>
       );
     });
@@ -95,11 +90,13 @@ export default class IndividualRecipes extends Component {
         </DirectionsContents>
       );
     });
-
     return (
       <ThemeProvider theme={theme}>
         <RecipeBackgroundWrapper>
-          <RecipeBackground alt="file not found" src={this.state.page_two_banner}></RecipeBackground>
+          <RecipeBackground
+            alt="file not found"
+            src={this.state.page_two_banner}
+          ></RecipeBackground>
         </RecipeBackgroundWrapper>
         <RecipeWrapperAlignment>
           <RecipeWrapper>
@@ -114,21 +111,24 @@ export default class IndividualRecipes extends Component {
                 </Rating>
               </RecipeHeadingWrapper>
               <RecipeImgWrapper>
-                <RecipeImg alt="file not found" src={this.state.recipe_obj.card_img}></RecipeImg>
+                <RecipeImg
+                  alt="file not found"
+                  src={this.state.recipe_obj.card_img}
+                ></RecipeImg>
               </RecipeImgWrapper>
               <RecipeContentsWrapper>
-                <Contents>
-                  <p>Servs:</p>
-                  <ContentDesc>{this.state.recipe_obj.servings}</ContentDesc>
-                </Contents>
-                <Contents>
-                  <p>Prep Time:</p>
-                  <ContentDesc>{this.state.recipe_obj.timing}</ContentDesc>
-                </Contents>
-                <Contents>
-                  <p>Calories:</p>
-                  <ContentDesc>{this.state.recipe_obj.calories}</ContentDesc>
-                </Contents>
+              <Contents>
+            <p>Servs:</p>
+            <ContentDesc>{this.state.recipe_obj.servings}</ContentDesc>
+          </Contents>
+          <Contents>
+            <p>Prep Time:</p>
+            <ContentDesc>{this.state.recipe_obj.timing}</ContentDesc>
+          </Contents>
+          <Contents>
+            <p>Calories:</p>
+            <ContentDesc>{this.state.recipe_obj.calories}</ContentDesc>
+          </Contents>
                 <PrintButton href="#">
                   <i className="fa fa-print"></i> Print
                 </PrintButton>

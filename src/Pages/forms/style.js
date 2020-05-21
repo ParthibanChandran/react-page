@@ -23,7 +23,6 @@ export const SignupWrapper = styled.div`
 export const TitleText = styled.label`
   display: block;
   width: 100%;
-  /* font-family: "Poppins-Bold"; */
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   font-size: 39px;
   color: #333;
@@ -32,7 +31,6 @@ export const TitleText = styled.label`
   padding-bottom: 30px;
 `;
 export const InputTitle = styled.div`
-  /* font-family: "Poppins-SemiBold"; */
   font-weight: bold;
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   font-size: 22px;
@@ -58,17 +56,20 @@ export const InputBox = styled.input`
   outline: none;
   border: none;
   font-size: 20px;
-  /* border: ${(props) => (props.loginResult ? "none" : "1px solid red")}; */
   &::placeholder {
     font-size: 16px;
     font-weight: 300;
-    font-family:'Arial';
+    font-family: "Arial";
     opacity: 0.8;
   }
   &:focus {
-      border-bottom: 1px solid #8dc63f;
-    /* border-bottom: ${(props) =>
-      props.loginResult ? "1px solid #8dc63f" : "1px solid red"}; */
+    border-bottom: 1px solid #8dc63f;
   }
 `;
-// export const Wrapper = styled.div``;
+export const ErrorMsg = styled.h3`
+  color: red;
+  font-size: 18px;
+  padding-bottom: 10px;
+  height: 45px;
+  font-family: "Open Sans", sans-serif;
+`;

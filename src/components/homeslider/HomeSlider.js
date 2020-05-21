@@ -4,7 +4,13 @@ import { RecipeTabs } from "./style";
 import { TabWrapper } from "../../Pages/style";
 
 export default function HomeSlider(props) {
-  let { Recipe_list, activeBanner, banner_tabchanger, page_two_banner,author_obj } = props;
+  let {
+    Recipe_list,
+    activeBanner,
+    banner_tabchanger,
+    page_two_banner,
+    author_obj,
+  } = props;
   return (
     <React.Fragment>
       <Dashboard
@@ -16,7 +22,7 @@ export default function HomeSlider(props) {
         {Recipe_list.slice(0, 4).map((element, index) => {
           return (
             <RecipeTabs
-              key={index}
+              key={element.receipeId}
               active={element.receipeId === activeBanner}
               onClick={() => banner_tabchanger(element.receipeId)}
             >

@@ -11,12 +11,12 @@ import {
   HorizondalRuler,
   RatingWrapper,
   RecipeDetails,
-  ViewButton,
   DetailsWrapper,
+  ViewButton
 } from "./style";
 
 export default function GridView(props) {
-  let { recipe_list, is_grid, page_two_banner,author_obj } = props;
+  let { recipe_list, is_grid, page_two_banner, author_obj } = props;
   return (
     <React.Fragment>
       {recipe_list.map((element, index) => {
@@ -36,19 +36,19 @@ export default function GridView(props) {
                   </RecipeDetails>
                 </RatingWrapper>
                 <ViewButton>
-                  <Link
-                    className="link-tag"
-                    to={{
-                      pathname: "/recipe-page-2",
-                      state: {
-                        obj: element,
-                        page_two_banner: page_two_banner,
-                        author_obj: author_obj
-                      },
-                    }}
-                  >
-                    View
-                  </Link>
+                <Link
+                  className="link-tag"
+                  to={{
+                    pathname: "/recipe-page",
+                    state: {
+                      obj: element,
+                      page_two_banner: page_two_banner,
+                      author_obj: author_obj,
+                    },
+                  }}
+                >
+                  View
+                </Link>
                 </ViewButton>
               </DetailsWrapper>
             </RecipeCardContents>

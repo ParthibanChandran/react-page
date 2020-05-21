@@ -9,6 +9,7 @@ import {
   TextArea,
   Input,
   SelectOption,
+  InputFieldTitle
 } from "./style";
 
 const input = (props) => {
@@ -18,6 +19,7 @@ const input = (props) => {
     case "input":
       inputElement = (
         <Input
+          id={props.label}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -27,6 +29,7 @@ const input = (props) => {
     case "textarea":
       inputElement = (
         <TextArea
+          id={props.label}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -35,7 +38,11 @@ const input = (props) => {
       break;
     case "select":
       inputElement = (
-        <SelectOption value={props.value} onChange={props.changed}>
+        <SelectOption
+          id={props.label}
+          value={props.value}
+          onChange={props.changed}
+        >
           {props.elementConfig.options.map((option) => (
             <option key={option} value={option}>
               {option}
@@ -50,6 +57,7 @@ const input = (props) => {
           <IngradientInputWrapper key={index}>
             <IngradientInputAlignment>
               <IngradientInput
+                id={props.label}
                 {...props.elementConfig}
                 value={props.value[index].value}
                 onChange={(event) => props.setDirections(event, index)}
@@ -77,11 +85,13 @@ const input = (props) => {
           <IngradientInputWrapper key={index}>
             <IngradientInputAlignment>
               <IngradientInput
+                id={props.label}
                 placeholder={props.elementConfig.placeholder[0]}
                 value={props.value[index].value1}
                 onChange={(event) => props.setIngradient(event, "name", index)}
               />
               <IngradientInput
+                id={props.label}
                 placeholder={props.elementConfig.placeholder[1]}
                 value={props.value[index].value2}
                 onChange={(event) =>
@@ -108,6 +118,7 @@ const input = (props) => {
     default:
       inputElement = (
         <Input
+          id={props.label}
           {...props.elementConfig}
           value={props.value}
           onChange={props.changed}
@@ -116,7 +127,7 @@ const input = (props) => {
   }
   return (
     <div>
-      <label>{props.label}</label>
+      <InputFieldTitle htmlFor={props.label}>{props.label}</InputFieldTitle>
       {inputElement}
     </div>
   );

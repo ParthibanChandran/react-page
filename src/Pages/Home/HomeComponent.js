@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { ThemeProvider } from "styled-components";
 
-import axios from "../axios_recipes";
+import axios from "../Store/axios_recipes";
 import { theme } from "../../styles/theme";
 import { SearchWrapper, RecipeContents, View } from "./style";
 import { Container } from "../style";
+import { SpinnerWrapper, Spinner } from "../../Pages/Shop/style";
 
 import HomeSlider from "../../components/homeslider/HomeSlider.js";
 import RecipeCards from "../../components/recipeCards/RecipeCards.js";
@@ -68,8 +69,9 @@ export default class HomeComponent extends Component {
     search_value: "",
     searchRecipeList: null,
     page_two_banner: require("../../assets/images/recipeBackground-02.webp"),
+    loading: true,
   };
-  
+
   componentDidMount() {
     window.scrollTo(0, 0);
     axios
@@ -99,17 +101,18 @@ export default class HomeComponent extends Component {
             {
               search_value: this.props.location.state.searchText,
               Recipe_list: updated_recipe,
+              loading: false
             },
             () => {
               this.searchResult();
             }
           );
         } else {
-          this.setState({ Recipe_list: updated_recipe });
+          this.setState({ Recipe_list: updated_recipe,loading: false });
         }
       })
       .catch((err) => {
-        console.log(err);
+        alert(err);
       });
   }
   banner_tabchanger = (id) => {
@@ -149,16 +152,19 @@ export default class HomeComponent extends Component {
     return (
       <div>
         <ThemeProvider theme={theme}>
-          <HomeSlider
+          {this.state.loading ?<SpinnerWrapper>
+          <Spinner></Spinner>
+        </SpinnerWrapper>:<HomeSlider
             author_obj={this.state.author_list[0]}
             banner_tabchanger={this.banner_tabchanger}
             Recipe_list={this.state.Recipe_list}
             activeBanner={this.state.activeBanner}
             page_two_banner={this.state.page_two_banner}
-          />
+          />}
           <Container>
             <RecipeContents>
               <RecipeCards
+                loading={this.state.loading}
                 author_obj={this.state.author_list[0]}
                 is_grid={this.state.is_grid}
                 recipe_list={

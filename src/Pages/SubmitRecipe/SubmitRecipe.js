@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles/theme";
-import { FormContainer, InputFieldTitle, NewIng } from "./style";
+import { FormContainer, NewIng } from "./style";
 import Input from "./Input";
-import axios from "../axios_recipes";
+import axios from "../Store/axios_recipes";
 
 export default class SubmitRecipe extends Component {
   state = {
@@ -64,10 +64,7 @@ export default class SubmitRecipe extends Component {
         elementType: "IngradientAdd",
         elementConfig: {
           type: "text",
-          placeholder: [
-            "Name of the ingredient",
-            "Quantity (e.g 1/2)",
-          ],
+          placeholder: ["Name of the ingredient", "Quantity (e.g 1/2)"],
           required: true,
         },
         value: [{ value1: "", value2: "" }],
@@ -126,20 +123,20 @@ export default class SubmitRecipe extends Component {
     event.preventDefault();
     let cardData = {};
     for (let key in this.state.formFields) {
-      cardData[key]=this.state.formFields[key].value;
+      cardData[key] = this.state.formFields[key].value;
     }
-    let arr= cardData["ingredients"].map((data)=>{
-      return [data.value2+" "+data.value1].join();
-    })
-    cardData["ingredients"]=arr;
-    let arr1= cardData["directions"].map((data)=>{
+    let arr = cardData["ingredients"].map((data) => {
+      return [data.value2 + " " + data.value1].join();
+    });
+    cardData["ingredients"] = arr;
+    let arr1 = cardData["directions"].map((data) => {
       return data.value;
-    })
-    cardData["directions"]=arr1;
-    axios.post("/recipes.json",cardData)
-    .then(response =>{
+    });
+    cardData["directions"] = arr1;
+    axios.post("/recipes.json", cardData).then((response) => {
       console.log(response);
-    })
+      alert("recipe added....");
+    });
   };
   inputChangedHandler = (event, data) => {
     let oldstate = { ...this.state.formFields };
@@ -225,8 +222,8 @@ export default class SubmitRecipe extends Component {
         {formElementsArray.map((formElement) => {
           return (
             <React.Fragment key={formElement.id}>
-              <InputFieldTitle>{formElement.config.label}</InputFieldTitle>
               <Input
+                label={formElement.config.label}
                 elementType={formElement.config.elementType}
                 elementConfig={formElement.config.elementConfig}
                 value={formElement.config.value}

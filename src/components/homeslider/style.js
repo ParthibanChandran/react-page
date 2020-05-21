@@ -15,7 +15,7 @@ export const SliderWrapper = styled.div`
 export const RecipeType = styled.span`
   padding: 5px;
   font-family: "Open Sans", sans-serif;
-  background-color: #8dc63f;
+  background-color: ${(props) => props.theme.primaryColor};
   color: white;
 `;
 export const RecipeTitle = styled.div`
@@ -44,7 +44,8 @@ export const RecipeTabs = styled.div`
   width: 25%;
   font-size: 14px;
   border-left: 1px solid #e3e3e3;
-  background-color: ${(props) => (props.active ? "#8dc63f" : "#f2f2f2")};
+  background-color : ${(props) =>
+    props.active ? props.theme.primaryColor : "#f2f2f2"};
   box-shadow: inset 0 -1px 0 0 rgba(50, 50, 50, 0.08);
   text-align: center;
   color: ${(props) => (props.active ? "white" : "gray")};

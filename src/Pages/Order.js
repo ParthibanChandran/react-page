@@ -6,7 +6,7 @@ export default function Order() {
     window.scrollTo(0, 0);
   }, []);
   return (
-    <CenterWrapper style={{ fontSize: "22px" }}>
+    <CenterWrapper>
       Your order is placed....<span role="img" aria-label="cart">🛒</span>
     </CenterWrapper>
   );

@@ -20,14 +20,33 @@ export const TabWrapper = styled(Container)`
 export const RecipeAlignment = styled(Container)`
   width: 960px;
 `;
-export const CenterWrapper = styled.div`
+export const CenterWrapper = styled.h1`
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Arvo";
+  font-size: 22px;
 `;
 export const HomePageWrapper = styled.a`
-text-decoration: none;
-color: #8dc63f;
+  text-decoration: none;
+  color: #8dc63f;
+`;
+export const MainWrapper = styled.div`
+  min-width: auto;
+  max-width: 100%;
+  height: 100vh;
+`;
+export const ScrollBarWrapper = styled.div`
+  height: 100%;
+  overflow-y: auto;
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+    background-color: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: ${(props) => props.theme.primaryColor};
+    border-radius: 10px;
+  }
 `;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { logoutHandler } from "../actions";
+import { logoutHandler } from "../Store/actions";
 import {
   LoginWrapper,
   TitleText,
@@ -10,11 +10,14 @@ import {
   WelcomeWrapper,
   WelcomeImage,
   FormWrapper,
+  ErrorMsg,
 } from "./style";
 import FormSubmit from "./input/FormSubmit";
 import { Link } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles/theme";
+import { checkValidity } from "../../utils/utility";
+
 class Login extends Component {
   state = {
     loginForm: {
@@ -55,40 +58,6 @@ class Login extends Component {
   componentDidMount() {
     window.scrollTo(0, 0);
   }
-  checkValidity(value, rules) {
-    let isValid = true;
-    let error = "";
-    if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
-      if (isValid === false) {
-        error = "fields are empty";
-      }
-    }
-
-    if (rules.minLength) {
-      isValid = value.length >= rules.minLength && isValid;
-      if (isValid === false) {
-        error = "password should be min 8 and max 15 characters";
-      }
-    }
-
-    if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength && isValid;
-      if (isValid === false) {
-        error = "password should be min 8 and max 15 characters";
-      }
-    }
-
-    if (rules.isEmail) {
-      const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-      isValid = pattern.test(value) && isValid;
-      if (isValid === false) {
-        error = "email is incorrect";
-      }
-    }
-
-    return error;
-  }
 
   inputChangedHandler = (event, inputIdentifier) => {
     const updatedLoginForm = {
@@ -98,7 +67,7 @@ class Login extends Component {
       ...updatedLoginForm[inputIdentifier],
     };
     updatedFormElement.value = event.target.value;
-    let error = this.checkValidity(
+    let error = checkValidity(
       updatedFormElement.value,
       updatedFormElement.validation
     );
@@ -133,6 +102,7 @@ class Login extends Component {
     }
     var user = localStorage.getItem(formData.email);
     var temp = false;
+    var error = "";
     if (user) {
       user = JSON.parse(user);
       if (
@@ -144,10 +114,19 @@ class Login extends Component {
         sessionStorage.setItem("authenticated", true);
         this.props.logoutHandler();
         temp = true;
-        this.props.history.push("/recipe-page-1");
+        this.props.history.push("/home-page");
+      } else {
+        error = "Email and Password didn't match...";
       }
+    }else{
+      error= "please SignUp the form..."
     }
-    this.setState({ formIsValid: temp, loginResult: true, existStatus: temp });
+    this.setState({
+      formIsValid: temp,
+      loginResult: true,
+      existStatus: temp,
+      errorMsg: error,
+    });
   };
   render() {
     const formElementsArray = [];
@@ -201,17 +180,7 @@ class Login extends Component {
           <FormWrapper>
             <LoginWrapper>
               <TitleText>Login</TitleText>
-              <h3
-                style={{
-                  color: "red",
-                  fontSize: "18px",
-                  paddingBottom: "10px",
-                  height: "45px",
-                  fontFamily: "'Open Sans', sans-serif",
-                }}
-              >
-                {this.state.errorMsg}
-              </h3>
+              <ErrorMsg>{this.state.errorMsg}</ErrorMsg>
               {form}
             </LoginWrapper>
           </FormWrapper>

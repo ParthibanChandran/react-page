@@ -77,10 +77,9 @@ export const ViewButton = styled.button`
   font-family: "Open Sans", sans-serif;
   background-color: none;
   border: none;
-  border-radius: 3px;
-  background-color : ${(props) => props.theme.colors.yellowGreen};
+  border-radius: 2px;
+  background-color : ${(props) => props.theme.primaryColor};
   color: white;
   font-weight: bold;
-  /* outline: none; */
   cursor: pointer;
 `;

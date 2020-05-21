@@ -5,7 +5,7 @@ export default function NotFound() {
         <CenterWrapper>
             <img src="https://img.icons8.com/clouds/100/000000/road-closure.png" alt="file not found"/>
             <p >Page Not Found...Click to</p>&nbsp;&nbsp;&nbsp;
-            <HomePageWrapper href="/recipe-page-1">Home Page</HomePageWrapper>
+            <HomePageWrapper href="/home-page">Home Page</HomePageWrapper>
         </CenterWrapper>
     )
 }

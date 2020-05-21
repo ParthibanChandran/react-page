@@ -22,7 +22,7 @@ export const SearchPanel = styled.div`
   justify-content: flex-end;
 `;
 export const SearchButton = styled.button`
-  background-color: #8dc63f;
+  background-color: ${(props) => props.theme.primaryColor};
   color: white;
   border: none;
   padding: 10px 14px;

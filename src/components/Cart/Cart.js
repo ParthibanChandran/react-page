@@ -32,7 +32,7 @@ function Cart(props) {
         ) : (
           addToCartProduct.map((value, index) => {
             return (
-              <SpicesList key={index}>
+              <SpicesList key={value.productId}>
                 <ProdThumbnail img={value.prodThumbnail}></ProdThumbnail>
                 <AddToCartWrapper>
                   <ProdTitle>{value.producttitle}</ProdTitle>

@@ -11,6 +11,6 @@ export const SearchWrapper = styled.div`
 `;
 export const View = styled(ViewButton)`
   margin: 25px 0 0px 20px;
-  background-color : ${(props) => props.theme.colors.yellowGreen};
+  background-color : ${(props) => props.theme.primaryColor};
   color: white;
 `;

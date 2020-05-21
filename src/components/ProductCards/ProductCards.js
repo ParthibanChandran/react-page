@@ -12,7 +12,6 @@ import {
 
 export default function ProductCards(props) {
   let { products, addToCartHandler } = props;
-  console.log(products)
   return (
     <React.Fragment>
       {products.map((data, index) => {

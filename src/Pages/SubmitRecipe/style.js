@@ -67,7 +67,7 @@ export const TextArea = styled.textarea`
   }
 `;
 
-export const InputFieldTitle = styled.h4`
+export const InputFieldTitle = styled.label`
   font-family: ${(props) => props.theme.fontFamily.primaryFont};
   color: ${(props) => props.theme.colors.darkGrey};
   font-weight: 500;

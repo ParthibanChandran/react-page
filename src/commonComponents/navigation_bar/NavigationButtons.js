@@ -3,26 +3,19 @@ import { connect } from "react-redux";
 import { NavigationWrapper, DropdownButton } from "./style";
 import DropDownLinks from "./DropdownLinks.js";
 import NormalLink from "./NormalLink.js";
-import { logoutHandler } from "../../Pages/actions";
+import { logoutHandler } from "../../Pages/Store/actions";
 
 class NavigationButtons extends Component {
   state = {
     nav_list: [
       {
+        tag_id : 0,
         linkName: "Home",
-        link: "/recipe-page-1",
+        link: "/home-page",
         subLinks: [],
       },
-      // {
-      //   linkName: "Demos",
-      //   linkTo: "/demos",
-      //   subLinks: [
-      //     { linkName: "Grid Homepage", link: "#" },
-      //     { linkName: "List Homepage", link: "#" },
-      //     { linkName: "Boxed Version", link: "#" },
-      //   ],
-      // },
       {
+        tag_id : 1,
         linkName: "Recipes",
         linkTo: "/recipes",
         subLinks: [
@@ -31,16 +24,8 @@ class NavigationButtons extends Component {
           { linkName: "Recipe page #2", link: "/recipes" },
         ],
       },
-      // {
-      //   linkName: "Pages",
-      //   linkTo: "/pages",
-      //   subLinks: [
-      //     { linkName: "Shortcodes", link: "#" },
-      //     { linkName: "Typography", link: "#" },
-      //     { linkName: "Contact", link: "#" },
-      //   ],
-      // },
       {
+        tag_id: 2,
         linkName: "Shop",
         linkTo: "/shop",
         subLinks: [
@@ -49,6 +34,7 @@ class NavigationButtons extends Component {
         ],
       },
       {
+        tag_id : 3,
         linkName: "Submit Recipe",
         link: "/submit-recipe",
         subLinks: [],
@@ -64,9 +50,9 @@ class NavigationButtons extends Component {
       <NavigationWrapper>
         {this.state.nav_list.map((element, index) => {
           return element.subLinks.length ? (
-            <DropDownLinks value={element} key={index} />
+            <DropDownLinks value={element} key={element.tag_id} />
           ) : (
-            <NormalLink value={element} key={index} />
+            <NormalLink value={element} key={element.tag_id} />
           );
         })}
         <div>
