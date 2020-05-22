@@ -3,7 +3,7 @@ import { Container } from "../style";
 
 export const RecipeBackgroundWrapper = styled.div`
   width: 100%;
-  height: 100%;
+  height: 250px;
 `;
 export const RecipeBackground = styled.img`
   width: inherit;
