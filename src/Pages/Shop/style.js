@@ -1,4 +1,4 @@
-import styled,{keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { Container } from "../style";
 
 export const ShopWrapper = styled.div`
@@ -54,7 +54,7 @@ const rotate = keyframes`
   }
 `;
 export const Spinner = styled.div`
-   border: 14px solid #f3f3f3;
+  border: 14px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid #3498db;
   width: 120px;

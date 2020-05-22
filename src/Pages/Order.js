@@ -5,9 +5,13 @@ export default function Order() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
   return (
     <CenterWrapper>
-      Your order is placed....<span role="img" aria-label="cart">🛒</span>
+      Your order is placed....
+      <span role="img" aria-label="cart">
+        🛒
+      </span>
     </CenterWrapper>
   );
 }

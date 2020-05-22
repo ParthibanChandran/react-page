@@ -4,26 +4,31 @@ import ThemeSwitcher from "../commonComponents/ThemeSwitcher/ThemeSwitcher";
 
 const theme = {
   primaryColor: "#8DC63F",
-  secondaryColor:"#85BA3B"
+  secondaryColor: "#85BA3B",
 };
 const Theme = ({ children }) => {
   const [color, setcolor] = useState(theme);
 
-  const changeTheme = (color) => {
-    const themes = { ...theme, primaryColor: color.color,secondaryColor:color.dark };
+  const themeChangeHandler = (color) => {
+    const themes = {
+      ...theme,
+      primaryColor: color.color,
+      secondaryColor: color.dark,
+    };
     setcolor(themes);
   };
 
-  const restoreToDefault = () => {
-    const themes = { ...theme};
+  const defaultColorHandler = () => {
+    const themes = { ...theme };
     setcolor(themes);
   };
+  
   return (
     <ThemeProvider theme={color}>
       {children}
       <ThemeSwitcher
-        onClick={changeTheme}
-        resetColor={restoreToDefault}
+        onClick={themeChangeHandler}
+        resetColor={defaultColorHandler}
       ></ThemeSwitcher>
     </ThemeProvider>
   );

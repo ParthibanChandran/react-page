@@ -118,8 +118,8 @@ class Login extends Component {
       } else {
         error = "Email and Password didn't match...";
       }
-    }else{
-      error= "please SignUp the form..."
+    } else {
+      error = "please SignUp the form...";
     }
     this.setState({
       formIsValid: temp,

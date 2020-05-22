@@ -117,18 +117,18 @@ export default class IndividualRecipes extends Component {
                 ></RecipeImg>
               </RecipeImgWrapper>
               <RecipeContentsWrapper>
-              <Contents>
-            <p>Servs:</p>
-            <ContentDesc>{this.state.recipe_obj.servings}</ContentDesc>
-          </Contents>
-          <Contents>
-            <p>Prep Time:</p>
-            <ContentDesc>{this.state.recipe_obj.timing}</ContentDesc>
-          </Contents>
-          <Contents>
-            <p>Calories:</p>
-            <ContentDesc>{this.state.recipe_obj.calories}</ContentDesc>
-          </Contents>
+                <Contents>
+                  <p>Servs:</p>
+                  <ContentDesc>{this.state.recipe_obj.servings}</ContentDesc>
+                </Contents>
+                <Contents>
+                  <p>Prep Time:</p>
+                  <ContentDesc>{this.state.recipe_obj.timing}</ContentDesc>
+                </Contents>
+                <Contents>
+                  <p>Calories:</p>
+                  <ContentDesc>{this.state.recipe_obj.calories}</ContentDesc>
+                </Contents>
                 <PrintButton href="#">
                   <i className="fa fa-print"></i> Print
                 </PrintButton>

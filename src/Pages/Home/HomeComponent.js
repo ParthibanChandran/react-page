@@ -101,14 +101,14 @@ export default class HomeComponent extends Component {
             {
               search_value: this.props.location.state.searchText,
               Recipe_list: updated_recipe,
-              loading: false
+              loading: false,
             },
             () => {
               this.searchResult();
             }
           );
         } else {
-          this.setState({ Recipe_list: updated_recipe,loading: false });
+          this.setState({ Recipe_list: updated_recipe, loading: false });
         }
       })
       .catch((err) => {
@@ -141,7 +141,7 @@ export default class HomeComponent extends Component {
     arr = this.state.Recipe_list.filter((data) => {
       if (data.recipe_name.toLowerCase().includes(searchText)) {
         return data;
-      }else{
+      } else {
         return null;
       }
     });
@@ -152,15 +152,19 @@ export default class HomeComponent extends Component {
     return (
       <div>
         <ThemeProvider theme={theme}>
-          {this.state.loading ?<SpinnerWrapper>
-          <Spinner></Spinner>
-        </SpinnerWrapper>:<HomeSlider
-            author_obj={this.state.author_list[0]}
-            banner_tabchanger={this.banner_tabchanger}
-            Recipe_list={this.state.Recipe_list}
-            activeBanner={this.state.activeBanner}
-            page_two_banner={this.state.page_two_banner}
-          />}
+          {this.state.loading ? (
+            <SpinnerWrapper>
+              <Spinner></Spinner>
+            </SpinnerWrapper>
+          ) : (
+            <HomeSlider
+              author_obj={this.state.author_list[0]}
+              banner_tabchanger={this.banner_tabchanger}
+              Recipe_list={this.state.Recipe_list}
+              activeBanner={this.state.activeBanner}
+              page_two_banner={this.state.page_two_banner}
+            />
+          )}
           <Container>
             <RecipeContents>
               <RecipeCards

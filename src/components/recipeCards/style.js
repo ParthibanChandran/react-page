@@ -78,7 +78,7 @@ export const ViewButton = styled.button`
   background-color: none;
   border: none;
   border-radius: 2px;
-  background-color : ${(props) => props.theme.primaryColor};
+  background-color: ${(props) => props.theme.primaryColor};
   color: white;
   font-weight: bold;
   cursor: pointer;

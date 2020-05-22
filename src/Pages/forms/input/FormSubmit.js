@@ -6,7 +6,7 @@ export default function FormSubmit(props) {
   return (
     <React.Fragment>
       <SubmitButton disabled={props.disabled} onClick={props.clicked}>
-      {props.children}
+        {props.children}
       </SubmitButton>
     </React.Fragment>
   );

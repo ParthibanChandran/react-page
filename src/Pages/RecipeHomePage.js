@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Header,MainWrapper,ScrollBarWrapper } from "./style";
+import { Container, Header, MainWrapper, ScrollBarWrapper } from "./style";
 import { Route, Switch } from "react-router-dom";
 
 import NavigationButtons from "../commonComponents/navigation_bar/NavigationButtons";
@@ -11,12 +11,11 @@ import Order from "./Order";
 import SubmitRecipe from "./SubmitRecipe/SubmitRecipe";
 import Theme from "./Theme";
 export default function RecipeHomePage() {
-  
   return (
     <React.Fragment>
       <Theme>
         <MainWrapper>
-          <ScrollBarWrapper >
+          <ScrollBarWrapper>
             <Container>
               <Header>
                 <LogoWrapper />

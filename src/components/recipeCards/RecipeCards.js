@@ -12,7 +12,10 @@ import {
   Ruler,
 } from "./style";
 import { SpinnerWrapper, Spinner } from "../../Pages/Shop/style";
-
+/**
+ * Recipe Cards for populating the recipes which are fetched from the firabase.
+ * GridView and list View is for structuring.
+ */
 export default function RecipeCards(props) {
   let { recipe_list, is_grid, page_two_banner, author_obj, loading } = props;
   return (

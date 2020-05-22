@@ -1,3 +1,3 @@
-export const logoutHandler = () =>({
-    type: 'LOGOUT',
+export const logoutHandler = () => ({
+  type: "LOGOUT",
 });

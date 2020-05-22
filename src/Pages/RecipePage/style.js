@@ -5,7 +5,7 @@ export const RecipeBackgroundWrapper = styled.div`
   width: 100%;
   height: 100%;
 `;
-export const RecipeBackground = styled.img` 
+export const RecipeBackground = styled.img`
   width: inherit;
   height: inherit;
   filter: brightness(60%);

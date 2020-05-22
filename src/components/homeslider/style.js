@@ -44,7 +44,7 @@ export const RecipeTabs = styled.div`
   width: 25%;
   font-size: 14px;
   border-left: 1px solid #e3e3e3;
-  background-color : ${(props) =>
+  background-color: ${(props) =>
     props.active ? props.theme.primaryColor : "#f2f2f2"};
   box-shadow: inset 0 -1px 0 0 rgba(50, 50, 50, 0.08);
   text-align: center;

@@ -6,6 +6,7 @@ export const EmptyCart = styled.div`
   font-weight: 800;
   padding: 10px;
 `;
+
 export const CartTitle = styled.h4`
   color: #606060;
   margin-top: 15px;

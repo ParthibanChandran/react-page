@@ -16,7 +16,7 @@ export default function ProductCards(props) {
     <React.Fragment>
       {products.map((data, index) => {
         return (
-          <ProductCard key={index}>
+          <ProductCard key={data.productId}>
             <ProductImgWrapper>
               <ProductCardImg img={data.productImg}/>
               <AddCart
@@ -30,7 +30,6 @@ export default function ProductCards(props) {
             <ProductDetails>
               <ProductCatagory>{data.productCatagory}</ProductCatagory>
               <ProductTitle>{data.producttitle}</ProductTitle>
-              {/* <div>{data.productDescription}</div> */}
               <ProductPrice>
                 {data.productPriceType}
                 {data.productPrice}
