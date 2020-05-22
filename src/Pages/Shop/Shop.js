@@ -10,7 +10,7 @@ import {
 } from "./style";
 import ProductCards from "../../components/ProductCards/ProductCards";
 import Cart from "../../components/Cart/Cart";
-import PageTitle from "../../components/PageTitle/PageTitle";
+import PageTitle from "../../commonComponents/PageTitle/PageTitle";
 import axios from "../Store/axios-products";
 
 export default class Shop extends Component {
