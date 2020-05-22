@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PageTitle from "../../components/PageTitle/PageTitle";
+import PageTitle from "../../commonComponents/PageTitle/PageTitle";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../../styles/theme";
 import { FormContainer, NewIng } from "./style";
